@@ -1,38 +1,39 @@
-import { Counter } from "features/counter/Counter";
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import { appActions } from "app/app.slice";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "features/auth/login/Login";
+import { Container } from "@mui/material";
 
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 
 export default function App() {
   return (
+    <div className="App">
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            IT-INCUBATOR
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Sign in</Button>
         </Toolbar>
       </AppBar>
+      <Container fixed>
+        {/*<CompWrapperForAuth title={'Sign in'} children={<Login />}>*/}
+
+          <Routes>
+            <Route path={"/login"} element={<Login />} />
+          </Routes>
+
+        {/*</CompWrapperForAuth>*/}
+
+
+      </Container>
     </Box>
+      </div>
   );
 }
 

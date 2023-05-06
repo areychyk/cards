@@ -8,6 +8,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "features/auth/login/Login";
 import { Register } from "features/auth/Register/Register";
+import { ForgotPassword } from "features/auth/ForgotPassword/ForgotPassword";
+
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -26,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register/>,
+  },
+  {
+    path: "/forgot_password",
+    element: <ForgotPassword/>,
   },
 ]);
 
