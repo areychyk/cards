@@ -1,0 +1,61 @@
+.buuton {
+    background: #366EFF;
+    color: #FFFFFF;
+    border-radius: 30px;
+    margin-top: 40px;
+    width: 100%;
+    padding: 17px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.textRecovery {
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    text-align: right;
+    margin-top: 30px;
+    /*style={{*/
+    /*    fontSize: "14px",*/
+    /*    fontWeight: "500",*/
+    /*    width: "100%",*/
+    /*    textAlign: "right",*/
+    /*    marginBottom: "20px",*/
+    /*    marginTop:"30px"*/
+    /*}}*/
+}
+
+.textEmailAddress {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
+    opacity: 0.5;
+    padding-top: 30px;
+    margin: 26px 0 10px;
+
+}
+
+.textRememberPassword {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #000000;
+    opacity: 0.5;
+    padding-top: 30px;
+    margin: 39px 0 10px;
+
+}
+
+
+/*font-family: 'Montserrat';*/
+/*font-style: normal;*/
+
+
+/*!* or 171% *!*/
+
+
+/*color: #000000;*/
+
+/*opacity: 0.5;*/

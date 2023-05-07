@@ -39,7 +39,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { NavLink } from "react-router-dom";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
-import { ArgRegisterType } from "features/auth/auth.api";
+import { ArgLoginType, ArgRegisterType } from "features/auth/auth.api";
 
 // export const Login = () => {
 //   const dispatch = useAppDispatch();
@@ -71,7 +71,7 @@ const schema = yup.object().shape({
     .oneOf([yup.ref('password')], 'Passwords does not match'),
 });
 
-type UserFormType= {
+type UseFormType= {
   email: string
   password: string
   confirmPassword: string
@@ -81,7 +81,7 @@ export const Register = () => {
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<UserFormType>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<UseFormType>({
     defaultValues: {
       email: "",
       password: "",
@@ -94,7 +94,11 @@ export const Register = () => {
 
   const onSubmitHandler = (data: ArgRegisterType) => {
     console.log(data);
-    dispatch(authThunks.register(data));
+    const payload:ArgRegisterType={
+      email:data.email,
+      password:data.password
+    }
+    dispatch(authThunks.register(payload));
     reset();
   };
 

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import s from './styles.module.css'
 
 type Props = {
-  children: any
+  children: React.ReactNode
   title:string
 }
 

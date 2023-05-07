@@ -9,6 +9,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from "features/auth/login/Login";
 import { Register } from "features/auth/Register/Register";
 import { ForgotPassword } from "features/auth/ForgotPassword/ForgotPassword";
+import { CheckEmail } from "features/auth/CheckEmail/CheckEmail";
+import { SetNewPassword } from "features/auth/SetNewPassword/SetNewPassword";
 
 
 const container = document.getElementById("root")!;
@@ -19,20 +21,33 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement:<div>Error!!!!!!!!!</div>,
+    children:[
+      {
+        path: "/login",
+        element: <Login/>,
+      },
+      {
+        path: "/register",
+        element: <Register/>,
+      },
+      {
+        path: "/forgot_password",
+        element: <ForgotPassword/>,
+      },
+      {
+        // path: "/#/set_new_password/:token",
+        path: "/set_new_password",
+        element: <SetNewPassword/>,
+      },
+      {
+        path: "/check_email",
+        element: <CheckEmail/>,
+      },
+    ]
 
   },
-  {
-    path: "/login",
-    element: <Login/>,
-  },
-  {
-    path: "/register",
-    element: <Register/>,
-  },
-  {
-    path: "/forgot_password",
-    element: <ForgotPassword/>,
-  },
+
+
 ]);
 
 root.render(

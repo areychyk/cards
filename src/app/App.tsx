@@ -4,39 +4,44 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Route, Routes } from "react-router-dom";
-import { Login } from "features/auth/login/Login";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
+import { useActions } from "common/hooks";
+import { authThunks } from "features/auth/auth.slice";
+import { useEffect } from "react";
 
 
 export default function App() {
+  const navigate = useNavigate();
+
+
+  const { initializeApp  } = useActions(authThunks);
+
+  useEffect(() => {
+    initializeApp({});
+  }, []);
+
+  const onClickSignIn = () => {
+    navigate("/login");
+  };
   return (
     <div className="App">
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            IT-INCUBATOR
-          </Typography>
-          <Button color="inherit">Sign in</Button>
-        </Toolbar>
-      </AppBar>
-      <Container fixed>
-        {/*<CompWrapperForAuth title={'Sign in'} children={<Login />}>*/}
-
-          <Routes>
-            <Route path={"/login"} element={<Login />} />
-          </Routes>
-
-        {/*</CompWrapperForAuth>*/}
-
-
-      </Container>
-    </Box>
-      </div>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              IT-INCUBATOR
+            </Typography>
+            <Button color="inherit" onClick={onClickSignIn}>Sign in</Button>
+          </Toolbar>
+        </AppBar>
+        <Container fixed>
+          <Outlet></Outlet>
+        </Container>
+      </Box>
+    </div>
   );
 }
-
 
 
 // function App() {
