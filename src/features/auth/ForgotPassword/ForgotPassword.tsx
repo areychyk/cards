@@ -39,7 +39,7 @@ const navigate = useNavigate()
       email: data.email,
       from: "test-front-admin <ai73a@yandex.by>",
       message: `<div style="background-color: lime; padding: 15px">password recovery link:
- <a href="http://localhost:3000/#/set_new_password/$token$">link</a>
+ <a href="http://localhost:3000/set_new_password/$token$">link</a>
  </div>`
     };
 

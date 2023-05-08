@@ -9,13 +9,17 @@ import { Container } from "@mui/material";
 import { useActions } from "common/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn, selectProfile } from "app/App.selector";
 
 
 export default function App() {
   const navigate = useNavigate();
 
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const { initializeApp  } = useActions(authThunks);
+
+
 
   useEffect(() => {
     initializeApp({});
@@ -32,10 +36,13 @@ export default function App() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               IT-INCUBATOR
             </Typography>
-            <Button color="inherit" onClick={onClickSignIn}>Sign in</Button>
+            {!isLoggedIn && <Button color="inherit" onClick={onClickSignIn}>Sign in</Button>}
+            {isLoggedIn && <div>ok</div>}
           </Toolbar>
         </AppBar>
         <Container fixed>
+
+
           <Outlet></Outlet>
         </Container>
       </Box>

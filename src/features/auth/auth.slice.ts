@@ -8,6 +8,7 @@ import {
   ProfileType
 } from "features/auth/auth.api";
 import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
+import { ResultCode } from "common/enums";
 
 
 const forgot = createAppAsyncThunk<{ emailForForgotPassword: string }, ArgForgotType>("auth/forgot", async (arg, { rejectWithValue }) => {
@@ -19,9 +20,13 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
   await AuthApi.register(arg);
 });
 
-const initializeApp = createAppAsyncThunk<any, any>("auth/initializeApp", async (arg, { rejectWithValue }) => {
-  const res = await AuthApi.me();
-  debugger
+const initializeApp = createAppAsyncThunk<{profile: ProfileType}, void>("auth/initializeApp", async (_, { rejectWithValue }) => {
+    const res = await AuthApi.me();
+    if(res.statusText==="OK"){
+      return {profile:res.data}
+    }else {
+      return rejectWithValue(null)
+  }
 
 });
 
@@ -39,6 +44,7 @@ const setNewPassword = createAppAsyncThunk<void, ArgSetNewPasswordType>("auth/se
 const slice = createSlice({
   name: "auth",
   initialState: {
+    isLoggedIn: false,
     profile: null as ProfileType | null,
     emailForForgotPassword: ""
 
@@ -55,7 +61,11 @@ const slice = createSlice({
       })
       .addCase(forgot.fulfilled, (state, action) => {
         state.emailForForgotPassword = action.payload.emailForForgotPassword;
-      });
+      })
+      .addCase(initializeApp.fulfilled,(state, action)=>{
+        state.profile = action.payload.profile;
+        state.isLoggedIn= true
+      })
 
 
   }

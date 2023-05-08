@@ -33,6 +33,7 @@ export const SetNewPassword = () => {
   const dispatch = useAppDispatch();
 
   const {token}=useParams()
+  console.log(token);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<UseFormType>({
     defaultValues: {

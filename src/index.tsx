@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         // path: "/#/set_new_password/:token",
-        path: "/set_new_password",
+        path: "/set_new_password/:token",
         element: <SetNewPassword/>,
       },
       {

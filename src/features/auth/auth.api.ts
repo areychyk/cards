@@ -2,13 +2,13 @@ import { instance, instanceForSetNewPassword } from "common/api/common.api";
 
 export const AuthApi = {
   register: (data: ArgRegisterType) => {
-    return instanceForSetNewPassword.post<RegisterResponseType>("auth/register", data);
+    return instance.post<RegisterResponseType>("auth/register", data);
   },
   login: (data: ArgLoginType) => {
     return instance.post<ProfileType>("auth/login", data);
   },
   me: () => {
-    return instance.post<any>("/auth/me");
+    return instance.post<ProfileType>("/auth/me");
   },
   forgot: (data: ArgForgotType) => {
     return instanceForSetNewPassword.post<any>("/auth/forgot", data);
