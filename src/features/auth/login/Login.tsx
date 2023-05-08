@@ -23,7 +23,7 @@ import { useAppDispatch } from "app/hooks";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
 
 // export const Login = () => {
@@ -56,6 +56,7 @@ const schema = yup.object().shape({
 export const Login = () => {
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const navigate = useNavigate()
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ArgLoginType>({
     defaultValues: {
@@ -72,6 +73,10 @@ export const Login = () => {
     console.log(data);
     dispatch(authThunks.login(data));
     reset();
+    if(!errors.password || !errors.email){
+      navigate('/cards')
+    }
+
   };
 
 

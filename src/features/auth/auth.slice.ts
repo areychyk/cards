@@ -8,7 +8,8 @@ import {
   ProfileType
 } from "features/auth/auth.api";
 import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
-import { ResultCode } from "common/enums";
+import { statusCode } from "common/enums";
+
 
 
 const forgot = createAppAsyncThunk<{ emailForForgotPassword: string }, ArgForgotType>("auth/forgot", async (arg, { rejectWithValue }) => {
@@ -22,7 +23,7 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
 
 const initializeApp = createAppAsyncThunk<{profile: ProfileType}, void>("auth/initializeApp", async (_, { rejectWithValue }) => {
     const res = await AuthApi.me();
-    if(res.statusText==="OK"){
+    if(res.statusText===statusCode.Success){
       return {profile:res.data}
     }else {
       return rejectWithValue(null)
@@ -33,6 +34,13 @@ const initializeApp = createAppAsyncThunk<{profile: ProfileType}, void>("auth/in
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/login", async (arg, { rejectWithValue }) => {
   const res = await AuthApi.login(arg);
   return { profile: res.data };
+});
+
+
+const logout = createAppAsyncThunk<{isLoggedIn: boolean}, void>("auth/login", async (_, { rejectWithValue }) => {
+   await AuthApi.logout();
+   return {isLoggedIn: false}
+
 });
 
 const setNewPassword = createAppAsyncThunk<void, ArgSetNewPasswordType>("auth/setNewPassword", async (arg, { rejectWithValue }) => {
@@ -58,6 +66,7 @@ const slice = createSlice({
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.profile = action.payload.profile;
+        state.isLoggedIn= true
       })
       .addCase(forgot.fulfilled, (state, action) => {
         state.emailForForgotPassword = action.payload.emailForForgotPassword;
@@ -73,4 +82,4 @@ const slice = createSlice({
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
-export const authThunks = { register, login, forgot, setNewPassword, initializeApp };
+export const authThunks = { register, login,logout, forgot, setNewPassword, initializeApp };

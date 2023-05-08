@@ -33,7 +33,8 @@ export const SetNewPassword = () => {
   const dispatch = useAppDispatch();
 
   const {token}=useParams()
-  console.log(token);
+
+
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<UseFormType>({
     defaultValues: {
@@ -48,8 +49,9 @@ export const SetNewPassword = () => {
   const onSubmitHandler = (data: UseFormType) => {
     const payload:ArgSetNewPasswordType={
       password:data.password,
-      resetPasswordToken:''
+      resetPasswordToken:token
     }
+
     dispatch(authThunks.setNewPassword(payload));
     reset();
     if (!errors.password) {

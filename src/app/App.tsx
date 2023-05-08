@@ -11,6 +11,7 @@ import { authThunks } from "features/auth/auth.slice";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectProfile } from "app/App.selector";
+import { ProfileInitialized } from "features/profile/ProfileInitialized/ProfileInitialized";
 
 
 export default function App() {
@@ -37,7 +38,7 @@ export default function App() {
               IT-INCUBATOR
             </Typography>
             {!isLoggedIn && <Button color="inherit" onClick={onClickSignIn}>Sign in</Button>}
-            {isLoggedIn && <div>ok</div>}
+            {isLoggedIn &&<ProfileInitialized/>}
           </Toolbar>
         </AppBar>
         <Container fixed>

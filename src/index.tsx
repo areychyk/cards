@@ -11,6 +11,8 @@ import { Register } from "features/auth/Register/Register";
 import { ForgotPassword } from "features/auth/ForgotPassword/ForgotPassword";
 import { CheckEmail } from "features/auth/CheckEmail/CheckEmail";
 import { SetNewPassword } from "features/auth/SetNewPassword/SetNewPassword";
+import { Cards } from "features/cards/Cards";
+import { PersonalInformation } from "features/profile/PersonalInformation/PersonalInformation";
 
 
 const container = document.getElementById("root")!;
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: "/check_email",
         element: <CheckEmail/>,
+      },
+      {
+        path: "/cards",
+        element: <Cards/>,
+      },
+      {
+        path: "/personal_information",
+        element: <PersonalInformation/>,
       },
     ]
 

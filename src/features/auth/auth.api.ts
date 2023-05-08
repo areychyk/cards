@@ -5,16 +5,19 @@ export const AuthApi = {
     return instance.post<RegisterResponseType>("auth/register", data);
   },
   login: (data: ArgLoginType) => {
-    return instance.post<ProfileType>("auth/login", data);
+    return instanceForSetNewPassword.post<ProfileType>("auth/login", data);
+  },
+  logout: () => {
+    return instanceForSetNewPassword.delete<ProfileType>("auth/me");
   },
   me: () => {
-    return instance.post<ProfileType>("/auth/me");
+    return instanceForSetNewPassword.post<any>("/auth/me");
   },
   forgot: (data: ArgForgotType) => {
     return instanceForSetNewPassword.post<any>("/auth/forgot", data);
   },
   setNewPassword: (data: ArgSetNewPasswordType) => {
-    return instance.post<any>("/auth/set-new-password", data);
+    return instanceForSetNewPassword.post<any>("/auth/set-new-password", data);
   }
 
 };
@@ -23,7 +26,7 @@ export const AuthApi = {
 
 export type ArgSetNewPasswordType = {
   password: string
-  resetPasswordToken: string
+  resetPasswordToken: string | undefined
 }
 
 export type ArgForgotType = {
