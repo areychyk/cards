@@ -1,0 +1,27 @@
+.wrapperBlock {
+
+    margin-bottom: 15px;
+}
+
+.avatarBlock{
+    position: relative;
+
+    left: 30px;
+    bottom: 40px;
+}
+.avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+
+}
+
+.CameraAltOutlinedIcon{
+    box-sizing: border-box;
+
+
+border-radius: 50%;
+    background: #808080;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+}

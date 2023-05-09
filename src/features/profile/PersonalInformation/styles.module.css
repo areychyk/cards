@@ -1,0 +1,51 @@
+
+.wrapperBlock {
+
+}
+
+
+.avatar {
+
+
+}
+
+.nickName {
+
+
+}
+
+
+.email {
+
+
+}
+
+.wrapperButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    border: #000000;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+
+    letter-spacing: 0.01em;
+
+    color: #000000;
+
+    opacity: 0.8;
+    margin: 8px 20px 8px 20px;
+    padding: 7px 15px 7px 15px;
+
+}

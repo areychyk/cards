@@ -10,19 +10,34 @@ export const AuthApi = {
   logout: () => {
     return instanceForSetNewPassword.delete<ProfileType>("auth/me");
   },
-  me: () => {
-    return instanceForSetNewPassword.post<any>("/auth/me");
+  me: () => {//TODO
+    return instanceForSetNewPassword.post<ProfileType>("/auth/me");
   },
   forgot: (data: ArgForgotType) => {
     return instanceForSetNewPassword.post<any>("/auth/forgot", data);
   },
   setNewPassword: (data: ArgSetNewPasswordType) => {
     return instanceForSetNewPassword.post<any>("/auth/set-new-password", data);
-  }
+  },
+  editProfile: (data: ArgEditProfileType) => {
+    return instanceForSetNewPassword.put<EditableProfileType>("auth/me", data);
+  },
 
 };
 
 //types
+
+export type EditableProfileType = {
+	updatedUser: ProfileType;
+	token: string;
+	tokenDeathTime: number;
+}
+
+
+export type ArgEditProfileType = {
+  name: string
+  avatar: string
+}
 
 export type ArgSetNewPasswordType = {
   password: string
@@ -50,6 +65,7 @@ export type RegisterResponseType = {
 
 export type ProfileType = {
   _id: string;
+  avatar?:string
   email: string;
   rememberMe: boolean;
   isAdmin: boolean;

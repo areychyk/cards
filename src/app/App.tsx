@@ -20,7 +20,7 @@ export default function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { initializeApp  } = useActions(authThunks);
 
-
+console.log(isLoggedIn)
 
   useEffect(() => {
     initializeApp({});

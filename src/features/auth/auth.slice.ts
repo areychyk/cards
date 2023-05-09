@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  ArgEditProfileType,
   ArgForgotType,
   ArgLoginType,
   ArgRegisterType,
@@ -24,6 +25,7 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
 const initializeApp = createAppAsyncThunk<{profile: ProfileType}, void>("auth/initializeApp", async (_, { rejectWithValue }) => {
     const res = await AuthApi.me();
     if(res.statusText===statusCode.Success){
+
       return {profile:res.data}
     }else {
       return rejectWithValue(null)
@@ -37,7 +39,7 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/
 });
 
 
-const logout = createAppAsyncThunk<{isLoggedIn: boolean}, void>("auth/login", async (_, { rejectWithValue }) => {
+const logout = createAppAsyncThunk<{isLoggedIn: boolean}, void>("auth/logout", async (_, { rejectWithValue }) => {
    await AuthApi.logout();
    return {isLoggedIn: false}
 
@@ -48,6 +50,18 @@ const setNewPassword = createAppAsyncThunk<void, ArgSetNewPasswordType>("auth/se
 
 });
 
+
+// const editProfile = createAppAsyncThunk<void, ArgEditProfileType>("auth/editProfile", async (arg, { rejectWithValue }) => {
+//   await AuthApi.editProfile(arg);
+//
+//
+// });
+const editProfile = createAppAsyncThunk<{ profile: ProfileType }, ArgEditProfileType>("auth/editProfile", async (arg, { rejectWithValue }) => {
+  const res = await AuthApi.editProfile(arg);
+  console.log(res)
+  return { profile: res.data.updatedUser };
+
+});
 
 const slice = createSlice({
   name: "auth",
@@ -68,12 +82,18 @@ const slice = createSlice({
         state.profile = action.payload.profile;
         state.isLoggedIn= true
       })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn= action.payload.isLoggedIn
+      })
       .addCase(forgot.fulfilled, (state, action) => {
         state.emailForForgotPassword = action.payload.emailForForgotPassword;
       })
       .addCase(initializeApp.fulfilled,(state, action)=>{
         state.profile = action.payload.profile;
         state.isLoggedIn= true
+      })
+      .addCase(editProfile.fulfilled,(state, action)=>{
+        state.profile = action.payload.profile;
       })
 
 
@@ -82,4 +102,4 @@ const slice = createSlice({
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
-export const authThunks = { register, login,logout, forgot, setNewPassword, initializeApp };
+export const authThunks = { register, login,logout, forgot, setNewPassword, initializeApp, editProfile};
