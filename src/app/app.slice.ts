@@ -15,12 +15,15 @@ const slice = createSlice({
   name: "app",
   initialState: appInitialState,
   reducers: {
-    setIsLoading:(state, action:PayloadAction<{isLoading:boolean}>)=>{
-      state.isLoading=action.payload.isLoading
+    setIsLoading: (state, action: PayloadAction<{ isLoading: boolean }>) => {
+      state.isLoading = action.payload.isLoading;
+    },
+    setError: (state, action: PayloadAction<{ error: string | null }>) => {
+      state.error = action.payload.error;
     }
   }
 });
 
 
 export const appReducer = slice.reducer;
-export const appActions=slice.actions
+export const appActions = slice.actions;

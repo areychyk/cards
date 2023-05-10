@@ -12,7 +12,7 @@ export const ProfileInitialized = () => {
   const navigate = useNavigate();
 
   const redirectToPersonalInformation = () => {
-    navigate("/personal_information");
+    navigate("/profile");
   };
 
   return (

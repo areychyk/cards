@@ -11,9 +11,10 @@ import { Register } from "features/auth/Register/Register";
 import { ForgotPassword } from "features/auth/ForgotPassword/ForgotPassword";
 import { CheckEmail } from "features/auth/CheckEmail/CheckEmail";
 import { SetNewPassword } from "features/auth/SetNewPassword/SetNewPassword";
-import { Cards } from "features/cards/Cards";
-import { PersonalInformation } from "features/profile/PersonalInformation/PersonalInformation";
-
+import { PacksList } from "features/packsList/PacksList";
+import { Profile } from "features/profile/Profile";
+import { GlobalError } from "common/components/GlobalError/GlobalError";
+import "react-toastify/dist/ReactToastify.css";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -37,7 +38,6 @@ const router = createBrowserRouter([
         element: <ForgotPassword/>,
       },
       {
-        // path: "/#/set_new_password/:token",
         path: "/set_new_password/:token",
         element: <SetNewPassword/>,
       },
@@ -46,12 +46,12 @@ const router = createBrowserRouter([
         element: <CheckEmail/>,
       },
       {
-        path: "/cards",
-        element: <Cards/>,
+        path: "/packsList",
+        element: <PacksList/>,
       },
       {
-        path: "/personal_information",
-        element: <PersonalInformation/>,
+        path: "/profile",
+        element: <Profile/>,
       },
     ]
 
@@ -64,6 +64,7 @@ root.render(
     <Provider store={store}>
       {/*<App />*/}
       <RouterProvider router={router} />
+      <GlobalError />
     </Provider>
 );
 

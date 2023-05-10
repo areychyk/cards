@@ -19,7 +19,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
 import { ArgLoginType } from "features/auth/auth.api";
 import { Button } from "common/components/Button/Button";
-import { useAppDispatch } from "app/hooks";
+import { useAppDispatch, useAppSelector } from "app/hooks";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
@@ -53,7 +53,14 @@ const schema = yup.object().shape({
     .min(7, "Password must be at least 7 characters")
 });
 
+
+
+
+
 export const Login = () => {
+
+  const error = useAppSelector((state) => state.app.error);
+
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate()
@@ -73,8 +80,8 @@ export const Login = () => {
     console.log(data);
     dispatch(authThunks.login(data));
     reset();
-    if(!errors.password || !errors.email){
-      navigate('/cards')
+    if(error !== null){
+      navigate('/packsList')
     }
 
   };

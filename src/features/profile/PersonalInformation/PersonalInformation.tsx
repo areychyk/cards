@@ -34,6 +34,7 @@ export const PersonalInformation = () => {
   };
   return (
     <CompWrapperForAuth title={"Personal Information"}>
+
       <div>
 
         <EditAvatar/>

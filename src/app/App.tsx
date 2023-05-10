@@ -31,9 +31,9 @@ console.log(isLoggedIn)
   };
   return (
     <div className="App">
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
+      <Box sx={{ flexGrow: 1 }} >
+        <AppBar position="static" color={"default"} style={{height:"60px"}}>
+          <Toolbar >
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               IT-INCUBATOR
             </Typography>
@@ -41,7 +41,7 @@ console.log(isLoggedIn)
             {isLoggedIn &&<ProfileInitialized/>}
           </Toolbar>
         </AppBar>
-        <Container fixed>
+        <Container fixed >
 
 
           <Outlet></Outlet>
