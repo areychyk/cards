@@ -6,12 +6,12 @@ import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import { ArgForgotType, ArgLoginType, ArgRegisterType } from "features/auth/auth.api";
 import { Button } from "common/components/Button/Button";
-import { useAppDispatch } from "app/hooks";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { Link, NavLink, redirect, useNavigate } from "react-router-dom";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { useAppDispatch } from "common/hooks";
 
 
 const schema = yup.object().shape({

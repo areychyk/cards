@@ -1,16 +1,16 @@
 import * as React from "react";
+import { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Container } from "@mui/material";
+import { Container, LinearProgress } from "@mui/material";
 import { useActions } from "common/hooks";
 import { authThunks } from "features/auth/auth.slice";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn, selectProfile } from "app/App.selector";
+import { selectIsLoading, selectIsLoggedIn } from "app/App.selector";
 import { ProfileInitialized } from "features/profile/ProfileInitialized/ProfileInitialized";
 
 
@@ -18,6 +18,7 @@ export default function App() {
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoading = useSelector(selectIsLoading);
   const { initializeApp  } = useActions(authThunks);
 
 console.log(isLoggedIn)
@@ -41,6 +42,7 @@ console.log(isLoggedIn)
             {isLoggedIn &&<ProfileInitialized/>}
           </Toolbar>
         </AppBar>
+        {isLoading && <LinearProgress color={"inherit"} style={{height:'5px'}}/>}
         <Container fixed >
 
 

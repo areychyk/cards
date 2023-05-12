@@ -33,13 +33,13 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
 import { Button } from "common/components/Button/Button";
-import { useAppDispatch } from "app/hooks";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { NavLink } from "react-router-dom";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
-import { ArgLoginType, ArgRegisterType } from "features/auth/auth.api";
+import { ArgRegisterType } from "features/auth/auth.api";
+import { useAppDispatch } from "common/hooks";
 
 // export const Login = () => {
 //   const dispatch = useAppDispatch();

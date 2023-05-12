@@ -1,7 +1,6 @@
 import React from "react";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useAppDispatch } from "app/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -10,6 +9,7 @@ import { EditableName } from "features/profile/PersonalInformation/EditableName/
 import { ArgEditProfileType } from "features/auth/auth.api";
 import s from "./styles.module.css";
 import { EditAvatar } from "features/profile/PersonalInformation/EditAvatar/EditAvatar";
+import { useAppDispatch } from "common/hooks";
 
 
 export const PersonalInformation = () => {

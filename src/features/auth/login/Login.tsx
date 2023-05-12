@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 
 import s from "./styles.module.css";
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  Grid,
-  Input,
-  InputAdornment,
-  InputLabel,
-  Paper
-} from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, FormGroup, Input, InputAdornment, InputLabel } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -19,12 +9,12 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
 import { ArgLoginType } from "features/auth/auth.api";
 import { Button } from "common/components/Button/Button";
-import { useAppDispatch, useAppSelector } from "app/hooks";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { useAppDispatch, useAppSelector } from "common/hooks";
 
 // export const Login = () => {
 //   const dispatch = useAppDispatch();

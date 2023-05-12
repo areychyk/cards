@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ArgForgotType, ArgRegisterType, ArgSetNewPasswordType } from "features/auth/auth.api";
-import { useAppDispatch } from "app/hooks";
+import { ArgRegisterType, ArgSetNewPasswordType } from "features/auth/auth.api";
+
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { Checkbox, FormControl, FormControlLabel, FormGroup, Input, InputAdornment, InputLabel } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { FormControl, FormGroup, Input, InputAdornment, InputLabel } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import s from "features/auth/login/styles.module.css";
 import { Button } from "common/components/Button/Button";
 import Typography from "@mui/material/Typography";
+import { useAppDispatch } from "common/hooks";
 
 
 const schema = yup.object().shape({

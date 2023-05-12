@@ -8,9 +8,10 @@ import {
   AuthApi,
   ProfileType
 } from "features/auth/auth.api";
-import { createAppAsyncThunk } from "common/utils/createAppAsyncThunk";
+
 import { statusCode } from "common/enums";
-import { appActions } from "app/app.slice";
+import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
+
 
 
 const forgot = createAppAsyncThunk<{ emailForForgotPassword: string }, ArgForgotType>("auth/forgot", async (arg, { rejectWithValue }) => {
@@ -19,15 +20,9 @@ const forgot = createAppAsyncThunk<{ emailForForgotPassword: string }, ArgForgot
 });
 
 const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI;
-  try {
+  return  thunkTryCatch(thunkAPI,async ()=>{
     await AuthApi.register(arg);
-  } catch (e: any) {
-    const error = e.response ? e.response.data.error : e.message;
-    dispatch(appActions.setError({ error }));
-    return rejectWithValue(null);
-  }
-
+  });
 });
 
 const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/initializeApp", async (_, { rejectWithValue }) => {
@@ -42,18 +37,12 @@ const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/
 });
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/login", async (arg, thunkAPI) => {
-  const { dispatch, rejectWithValue } = thunkAPI;
-  try {
+
+  return thunkTryCatch(thunkAPI,async ()=>{
     const res = await AuthApi.login(arg);
     return { profile: res.data };
-  } catch (e: any) {
-    const error = e.response ? e.response.data.error : e.message;
-    dispatch(appActions.setError({ error }));
-    return rejectWithValue(null);
-  }
-
+  });
 });
-
 
 const logout = createAppAsyncThunk<{ isLoggedIn: boolean }, void>("auth/logout", async (_, { rejectWithValue }) => {
   await AuthApi.logout();
