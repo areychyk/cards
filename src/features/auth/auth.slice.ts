@@ -25,15 +25,19 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
   });
 });
 
-const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/initializeApp", async (_, { rejectWithValue }) => {
-  const res = await AuthApi.me();
-  if (res.statusText === statusCode.Success) {
+const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/initializeApp", async (_, thunkAPI) => {
+  // const res = await AuthApi.me();
+  // if (res.statusText === statusCode.Success) {
+  //
+  //   return { profile: res.data };
+  // } else {
+  //   return rejectWithValue(null);
+  // }
 
+  return thunkTryCatch(thunkAPI,async ()=>{
+    const res = await AuthApi.me();
     return { profile: res.data };
-  } else {
-    return rejectWithValue(null);
-  }
-
+  });
 });
 
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/login", async (arg, thunkAPI) => {
