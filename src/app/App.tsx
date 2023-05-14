@@ -5,13 +5,14 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { Container, LinearProgress } from "@mui/material";
 import { useActions } from "common/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import { useSelector } from "react-redux";
 import { selectIsLoading, selectIsLoggedIn } from "app/App.selector";
 import { ProfileInitialized } from "features/profile/ProfileInitialized/ProfileInitialized";
+import { PrivateRoutes } from "common/components/PrivateRoutes/PrivateRoutes";
 
 
 export default function App() {
@@ -21,7 +22,6 @@ export default function App() {
   const isLoading = useSelector(selectIsLoading);
   const { initializeApp  } = useActions(authThunks);
 
-console.log(isLoggedIn)
 
   useEffect(() => {
     initializeApp({});
@@ -30,6 +30,8 @@ console.log(isLoggedIn)
   const onClickSignIn = () => {
     navigate("/login");
   };
+
+
   return (
     <div className="App">
       <Box sx={{ flexGrow: 1 }} >
@@ -46,7 +48,8 @@ console.log(isLoggedIn)
         <Container fixed >
 
 
-          <Outlet></Outlet>
+          <Outlet/>
+          {/*<PrivateRoutes/>*/}
         </Container>
       </Box>
     </div>

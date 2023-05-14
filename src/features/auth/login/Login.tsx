@@ -12,9 +12,10 @@ import { Button } from "common/components/Button/Button";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
 import { useAppDispatch, useAppSelector } from "common/hooks";
+import { toast } from "react-toastify";
 
 // export const Login = () => {
 //   const dispatch = useAppDispatch();
@@ -49,7 +50,9 @@ const schema = yup.object().shape({
 
 export const Login = () => {
 
+
   const error = useAppSelector((state) => state.app.error);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -68,14 +71,19 @@ export const Login = () => {
 
   const onSubmitHandler = (data: ArgLoginType) => {
     console.log(data);
-    dispatch(authThunks.login(data));
+    dispatch(authThunks.login(data)).then(()=>{
+      toast.success('Вы успешно залогинились')
+    })
     reset();
     if(error !== null){
       navigate('/packsList')
     }
 
   };
-
+  if(isLoggedIn){
+    // return <Navigate to={"/packsList"}/>
+    navigate('/packsList')
+  }
 
   return (
     <CompWrapperForAuth title={"Sign in"}>

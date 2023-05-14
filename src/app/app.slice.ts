@@ -38,6 +38,10 @@ const slice = createSlice({
       .addMatcher((action) => {
         return action.type.endsWith("/rejected");
       }, (state, action) => {
+        if(action.type === 'auth/initializeApp/rejected') {
+          state.isLoading = false;
+          return
+        }
         const err = action.payload as Error | AxiosError<{ error: string }>;
         if (isAxiosError(err)) {
           state.error=err.response ? err.response.data.error : err.message
