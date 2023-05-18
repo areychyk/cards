@@ -5,7 +5,7 @@ import { ArgRegisterType, ArgSetNewPasswordType } from "features/auth/auth.api";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
-import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { CompWrapperForContent } from "common/components/CompWrapperForContent/CompWrapperForContent";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormControl, FormGroup, Input, InputAdornment, InputLabel } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -64,7 +64,7 @@ export const SetNewPassword = () => {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
-    <CompWrapperForAuth title={"Forgot your password?"}>
+    <CompWrapperForContent title={"Forgot your password?"}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
 
         <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
@@ -122,6 +122,6 @@ export const SetNewPassword = () => {
 
 
       </form>
-    </CompWrapperForAuth>
+    </CompWrapperForContent>
   );
 };

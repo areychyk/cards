@@ -37,7 +37,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { NavLink } from "react-router-dom";
-import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { CompWrapperForContent } from "common/components/CompWrapperForContent/CompWrapperForContent";
 import { ArgRegisterType } from "features/auth/auth.api";
 import { useAppDispatch } from "common/hooks";
 
@@ -104,7 +104,7 @@ export const Register = () => {
 
 
   return (
-    <CompWrapperForAuth title={"Sign up"}>
+    <CompWrapperForContent title={"Sign up"}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
 
         <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
@@ -205,6 +205,6 @@ export const Register = () => {
 
 
       </form>
-    </CompWrapperForAuth>
+    </CompWrapperForContent>
   );
 };

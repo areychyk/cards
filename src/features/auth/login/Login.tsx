@@ -13,7 +13,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
-import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { CompWrapperForContent } from "common/components/CompWrapperForContent/CompWrapperForContent";
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { toast } from "react-toastify";
 
@@ -86,7 +86,7 @@ export const Login = () => {
   }
 
   return (
-    <CompWrapperForAuth title={"Sign in"}>
+    <CompWrapperForContent title={"Sign in"}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
 
         <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
@@ -167,6 +167,6 @@ export const Login = () => {
 
 
       </form>
-    </CompWrapperForAuth>
+    </CompWrapperForContent>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { CompWrapperForContent } from "common/components/CompWrapperForContent/CompWrapperForContent";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { authThunks } from "features/auth/auth.slice";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ export const PersonalInformation = () => {
     dispatch(authThunks.editProfile(payload));
   };
   return (
-    <CompWrapperForAuth title={"Personal Information"}>
+    <CompWrapperForContent title={"Personal Information"}>
 
       <div>
 
@@ -51,7 +51,7 @@ export const PersonalInformation = () => {
         </div>
       </div>
 
-    </CompWrapperForAuth>
+    </CompWrapperForContent>
   );
 };
 

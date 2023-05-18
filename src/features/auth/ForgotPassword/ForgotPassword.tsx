@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
 import { Link, NavLink, redirect, useNavigate } from "react-router-dom";
-import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
+import { CompWrapperForContent } from "common/components/CompWrapperForContent/CompWrapperForContent";
 import { useAppDispatch } from "common/hooks";
 
 
@@ -55,7 +55,7 @@ const navigate = useNavigate()
 
 
   return (
-    <CompWrapperForAuth title={"Forgot your password?"}>
+    <CompWrapperForContent title={"Forgot your password?"}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
 
         <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
@@ -109,6 +109,6 @@ const navigate = useNavigate()
 
 
       </form>
-    </CompWrapperForAuth>
+    </CompWrapperForContent>
   );
 };

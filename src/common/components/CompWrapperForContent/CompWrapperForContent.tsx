@@ -5,10 +5,10 @@ import s from './styles.module.css'
 
 type Props = {
   children: React.ReactNode
-  title:string
+  title?:string
 }
 
-export const CompWrapperForAuth = ({title, children}:Props) => {
+export const CompWrapperForContent = ({title, children}:Props) => {
 
 
   return (

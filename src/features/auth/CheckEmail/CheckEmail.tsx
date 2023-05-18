@@ -1,13 +1,11 @@
 import React from "react";
-import { ArgRegisterType } from "features/auth/auth.api";
-import * as yup from "yup";
-import { CompWrapperForAuth } from "common/components/CompWrapperForAuth/CompWrapperForAuth";
 import { useSelector } from "react-redux";
 import { selectEmailForForgotPassword } from "features/auth/CheckEmail/CheckEmail.selector";
 import s from "features/auth/ForgotPassword/styles.module.css";
 import Typography from "@mui/material/Typography";
 import { Button } from "common/components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import { CompWrapperForContent } from "common/components/CompWrapperForContent";
 
 
 export const CheckEmail = () => {
@@ -18,7 +16,7 @@ export const CheckEmail = () => {
   };
 
   return (
-    <CompWrapperForAuth title={"Check Email"}>
+    <CompWrapperForContent title={"Check Email"}>
       <div className={s.textEmailAddress}>
         <Typography variant={"caption"}>We’ve sent an Email with instructions to {emailForForgotPassword} </Typography>
       </div>
@@ -42,6 +40,6 @@ export const CheckEmail = () => {
         Back to login
       </Button>
 
-    </CompWrapperForAuth>
+    </CompWrapperForContent>
   );
 };
