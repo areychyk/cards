@@ -1,0 +1,12 @@
+
+.filterOffBlock {
+    cursor: pointer;
+    padding-top: 45px;
+
+}
+
+.filterOffBlock:hover {
+   content: "Clear All Fitler";
+    opacity: 0.5;
+
+}

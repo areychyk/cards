@@ -22,13 +22,13 @@ export const TablePacksList = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead style={{background:"#EFEFEF"}}>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Cards</TableCell>
-            <TableCell align="right">Last Updated</TableCell>
-            <TableCell align="right">Created by</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <TableCell align="center">Cards</TableCell>
+            <TableCell align="center">Last Updated</TableCell>
+            <TableCell align="center">Created by</TableCell>
+            <TableCell align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,10 +40,10 @@ export const TablePacksList = () => {
               <TableCell component="th" scope="row">
                 {pack.name}
               </TableCell>
-              <TableCell align="right">{pack.cardsCount}</TableCell>
-              <TableCell align="right">{pack.updated}</TableCell>
-              <TableCell align="right">{pack.user_name}</TableCell>
-              <TableCell align="right">{1}</TableCell>
+              <TableCell align="center">{pack.cardsCount}</TableCell>
+              <TableCell align="center">{pack.updated}</TableCell>
+              <TableCell align="center">{pack.user_name}</TableCell>
+              <TableCell align="center">{1}</TableCell>
             </TableRow>
           )
           )}

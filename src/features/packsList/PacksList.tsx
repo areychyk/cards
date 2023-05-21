@@ -6,9 +6,10 @@ import { selectPacksList } from "features/packsList/packsList.selectors";
 import { TablePacksList } from "features/packsList/TablePacksList/TablePacksList";
 import { SearchValue } from "features/packsList/SearchValue/SearchValue";
 import { ShowPacksCards } from "features/packsList/ShowPacksCards/ShowPacksCards";
-import s from './styles.module.css'
+import s from "./styles.module.css";
 import { NumberOfCards } from "features/packsList/NumberOfCards/NumberOfCards";
-import FilterAltOffOutlinedIcon from '@mui/icons-material/FilterAltOffOutlined';
+import FilterAltOffOutlinedIcon from "@mui/icons-material/FilterAltOffOutlined";
+import { FilterClear } from "features/packsList/FilterClear/FilterClear";
 
 export const PacksList = () => {
   const dispatch = useAppDispatch();
@@ -17,23 +18,21 @@ export const PacksList = () => {
     dispatch(packsListThunks.getPacksList({}));
   }, []);
   return (
-    <div >
+    <div>
 
-<div className={s.blockFilter}>
-  <SearchValue/>
+      <div className={s.blockFilter}>
+        <SearchValue />
 
-  <ShowPacksCards/>
+        <ShowPacksCards />
 
-  <NumberOfCards/>
+        <NumberOfCards />
 
-  <div>
-    <FilterAltOffOutlinedIcon fontSize={"large"}/>
-  </div>
-</div>
+        <FilterClear />
+      </div>
 
-
-      <TablePacksList />
-
+      <div className={s.tablePacksListBlock}>
+        <TablePacksList />
+      </div>
 
 
     </div>
