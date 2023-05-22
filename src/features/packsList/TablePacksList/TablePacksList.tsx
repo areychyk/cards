@@ -41,7 +41,7 @@ export const TablePacksList = () => {
                 {pack.name}
               </TableCell>
               <TableCell align="center">{pack.cardsCount}</TableCell>
-              <TableCell align="center">{pack.updated}</TableCell>
+              <TableCell align="center">{pack.created}</TableCell>
               <TableCell align="center">{pack.user_name}</TableCell>
               <TableCell align="center">{1}</TableCell>
             </TableRow>

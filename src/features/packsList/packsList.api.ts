@@ -7,7 +7,9 @@ export const PacksListApi={
 				user_id:data.user_id,
 				min:data.min,
 				max:data.max,
-				packName:data.packName
+				packName:data.packName,
+				page:data.page,
+				pageCount:data.pageCount
 
 			} })
   }

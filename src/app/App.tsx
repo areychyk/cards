@@ -33,7 +33,7 @@ export default function App() {
 
 
   return (
-    <div className="App" style={{background: '#F9F9FA'}}>
+    <div className="App" style={{background: '#F9F9FA', height:"100vh"}}>
       <Box sx={{ flexGrow: 1 }} >
         <AppBar position="static" color={"default"} style={{height:"60px"}}>
           <Toolbar >

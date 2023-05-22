@@ -10,6 +10,7 @@ import s from "./styles.module.css";
 import { NumberOfCards } from "features/packsList/NumberOfCards/NumberOfCards";
 import FilterAltOffOutlinedIcon from "@mui/icons-material/FilterAltOffOutlined";
 import { FilterClear } from "features/packsList/FilterClear/FilterClear";
+import { PaginationCards } from "features/packsList/PaginationCards/PaginationCards";
 
 export const PacksList = () => {
   const dispatch = useAppDispatch();
@@ -17,8 +18,19 @@ export const PacksList = () => {
   useEffect(() => {
     dispatch(packsListThunks.getPacksList({}));
   }, []);
+
+  const onAddNewPack=()=>{
+
+  }
   return (
     <div>
+
+      <div className={s.wrapperTitleAndButton}>
+        <h2 className={s.title}>Packs list</h2>
+        <button className={s.button} onClick={onAddNewPack}>
+          Add new pack
+        </button>
+      </div>
 
       <div className={s.blockFilter}>
         <SearchValue />
@@ -33,6 +45,9 @@ export const PacksList = () => {
       <div className={s.tablePacksListBlock}>
         <TablePacksList />
       </div>
+
+      <PaginationCards/>
+
 
 
     </div>
