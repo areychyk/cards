@@ -43,7 +43,7 @@ export const ShowPacksCards = () => {
     background: !showAllPacks ? "#FFFFFF" : "#366EFF"
   };
   const variant = showAllPacks ? "outlined" : "contained";
-  console.log(showAllPacks);
+  // console.log(showAllPacks);
 
   return (
     <div>
