@@ -1,6 +1,7 @@
 import { instance, instanceForSetNewPassword } from "common/api/common.api";
 
 
+
 export const PacksListApi={
   getPacks:(data:ArgPacksListType)=>{
     return instanceForSetNewPassword.get<PacksListResponseType>("/cards/pack", { params:{
@@ -12,10 +13,21 @@ export const PacksListApi={
 				pageCount:data.pageCount
 
 			} })
-  }
+  },
+	addNewPack:(data:ArgAddNewPackType)=>{
+		return instanceForSetNewPassword.post("/cards/pack",data)
+	}
 }
 
 
+
+export type ArgAddNewPackType = {
+	cardsPack: {
+			name: string
+			deckCover?: string
+			private: boolean
+		}
+}
 
 
 

@@ -13,7 +13,7 @@ export const PaginationCards = () => {
   const packsList = useSelector(selectPacksList);
   const dispatch = useAppDispatch();
 
-  const [pageCount, setPageCount] = useState<any>(packsList ? packsList.pageCount : "4");
+  const [pageCount, setPageCount] = useState<number>(packsList ? packsList.pageCount : 4);
   const [page, setPage] = useState<number>(packsList ? packsList.page : 1);
 
   const dataUrlParam: ArgPacksListType = {
@@ -32,7 +32,8 @@ export const PaginationCards = () => {
   };
 
   const handleChangePageCount = (event: SelectChangeEvent) => {
-    setPageCount(event.target.value as string);
+    // setPageCount(event.target.value as string);
+    setPageCount(+event.target.value);
 
     dispatch(packsListThunks.getPacksList(dataUrlParam));
 
@@ -56,15 +57,15 @@ export const PaginationCards = () => {
       </Stack>
 
       <div className={s.showCardPageBlock}>
-        <p>Show</p>
-        <Box sx={{ minWidth: 120 }} >
+        <p className={s.textSelect}>Show</p>
+        <Box sx={{ minWidth: 50,padding:0 , margin:0}} >
           <FormControl fullWidth>
             {/*<InputLabel id="demo-simple-select-label">Age</InputLabel>*/}
             <Select
-              style={{padding:"0px", margin:"5px",minWidth:"10px",height:"24px"}}
+              style={{padding:"0px", margin:"0px 5px",minWidth:"10px",height:"24px"}}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={pageCount}
+              value={pageCount.toString()}
               onChange={handleChangePageCount}
             >
               <MenuItem value={4}>4</MenuItem>
@@ -73,7 +74,7 @@ export const PaginationCards = () => {
             </Select>
           </FormControl>
         </Box>
-        <p>Cards per Page</p>
+        <p className={s.textSelect}>Cards per Page</p>
       </div>
 
 

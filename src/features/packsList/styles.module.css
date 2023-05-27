@@ -1,9 +1,16 @@
 
 
+
+.showModelWindow{
+    opacity: 0.5;
+}
+
 .blockFilter{
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: center;
+    gap: 0px 60px;
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
 import { useSelector } from "react-redux";
@@ -11,8 +11,11 @@ import { NumberOfCards } from "features/packsList/NumberOfCards/NumberOfCards";
 import FilterAltOffOutlinedIcon from "@mui/icons-material/FilterAltOffOutlined";
 import { FilterClear } from "features/packsList/FilterClear/FilterClear";
 import { PaginationCards } from "features/packsList/PaginationCards/PaginationCards";
+import { AddNewPack } from "features/packsList/AddNewPack/AddNewPack";
 
 export const PacksList = () => {
+  const [showModelAddNewPack,setShowModelAddNewPack] = useState<boolean>(false)
+
   const dispatch = useAppDispatch();
   const packsList = useSelector(selectPacksList);
   useEffect(() => {
@@ -20,12 +23,16 @@ export const PacksList = () => {
   }, []);
 
   const onAddNewPack=()=>{
-
+    setShowModelAddNewPack(true)
   }
   return (
-    <div>
+    <div >
+      {showModelAddNewPack && <AddNewPack
+        setShowModelAddNewPack={setShowModelAddNewPack}
 
-      <div className={s.wrapperTitleAndButton}>
+      />}
+<div className={showModelAddNewPack ? s.showModelWindow:""}>
+      <div className={s.wrapperTitleAndButton }>
         <h2 className={s.title}>Packs list</h2>
         <button className={s.button} onClick={onAddNewPack}>
           Add new pack
@@ -49,7 +56,7 @@ export const PacksList = () => {
       <PaginationCards/>
 
 
-
+</div>
     </div>
   );
 };
