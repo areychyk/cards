@@ -56,6 +56,7 @@ export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
 
     dispatch(packsListThunks.addNewPack(dataUrlParam)).then(() => {
       setShowModelAddNewPack(false);
+      dispatch(packsListThunks.getPacksList({}));
     });
     console.log(data);
     reset();

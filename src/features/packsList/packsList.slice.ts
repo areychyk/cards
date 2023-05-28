@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 import {
-  ArgAddNewPackType,
+  ArgAddNewPackType, ArgDeletePackType,
   ArgPacksListType,
   PacksListApi,
   PacksListResponseType
@@ -24,12 +24,29 @@ const addNewPack=createAppAsyncThunk<void,ArgAddNewPackType>("packsList/addNewPa
   })
 })
 
+
+const deletePack=createAppAsyncThunk<void,ArgDeletePackType>("packsList/deletePack",async (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async ()=>{
+    await PacksListApi.deletePack(arg)
+  })
+})
+
 const slice = createSlice({
   name: "packsList",
   initialState: {
-    packsList: null as PacksListResponseType | null
+    packsList: null as PacksListResponseType | null,
+    searchParams:{
+      page: 1,
+      pageCount: 4,
+    },
+
   },
-  reducers: {},
+  reducers: {
+    setSearchParams:(state,action)=>{
+      console.log(action.payload);
+      state.searchParams=action.payload
+    }
+  },
   extraReducers:builder => {
     builder
       .addCase(getPacksList.fulfilled, (state, action)=>{
@@ -42,4 +59,4 @@ const slice = createSlice({
 
 export const packsListReducer = slice.reducer;
 export const packsListActions = slice.actions;
-export const packsListThunks = { getPacksList ,addNewPack};
+export const packsListThunks = { getPacksList ,addNewPack, deletePack};

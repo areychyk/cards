@@ -16,9 +16,20 @@ export const PacksListApi={
   },
 	addNewPack:(data:ArgAddNewPackType)=>{
 		return instanceForSetNewPassword.post("/cards/pack",data)
+	},
+
+	deletePack:(data:ArgDeletePackType)=>{
+
+		return instanceForSetNewPassword.delete("/cards/pack", { params:{
+			id:data.id
+			}})
 	}
 }
 
+
+export type ArgDeletePackType={
+	id:string
+}
 
 
 export type ArgAddNewPackType = {

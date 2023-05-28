@@ -8,6 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import { selectPacksList } from "features/packsList/packsList.selectors";
+import {
+  ActionsTablePacksCards
+} from "features/packsList/TablePacksList/ActionsTablePacksCards/ActionsTablePacksCards";
 
 
 
@@ -39,11 +42,12 @@ export const TablePacksList = () => {
             >
               <TableCell component="th" scope="row">
                 {pack.name}
+
               </TableCell>
               <TableCell align="center">{pack.cardsCount}</TableCell>
               <TableCell align="center">{pack.created}</TableCell>
               <TableCell align="center">{pack.user_name}</TableCell>
-              <TableCell align="center">{1}</TableCell>
+              <TableCell align="center" style={{width:"100px"}}>{<ActionsTablePacksCards idUserCards={pack.user_id} idCard={pack._id}/>}</TableCell>
             </TableRow>
           )
           )}

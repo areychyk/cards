@@ -2,15 +2,16 @@ import React, { ChangeEvent, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Pagination, Select, SelectChangeEvent, Stack } from "@mui/material";
 import s from "./styles.module.css";
 import { useSelector } from "react-redux";
-import { selectPacksList } from "features/packsList/packsList.selectors";
+import { selectPacksList, selectSearchParams } from "features/packsList/packsList.selectors";
 import { useAppDispatch } from "common/hooks";
 import { ArgPacksListType } from "features/packsList/packsList.api";
-import { packsListThunks } from "features/packsList/packsList.slice";
+import { packsListActions, packsListReducer, packsListThunks } from "features/packsList/packsList.slice";
 import Box from "@mui/material/Box";
 
 export const PaginationCards = () => {
 
   const packsList = useSelector(selectPacksList);
+  // const searchParams = useSelector(selectSearchParams);
   const dispatch = useAppDispatch();
 
   const [pageCount, setPageCount] = useState<number>(packsList ? packsList.pageCount : 4);
@@ -24,6 +25,11 @@ export const PaginationCards = () => {
   const handleChangePagination = (event: React.ChangeEvent<unknown>, value: number) => {
 
     setPage(value);
+    // const searchParams={
+    //   page: value,
+    //   pageCount: pageCount
+    // }
+    // packsListActions.setSearchParams(searchParams);
     dispatch(packsListThunks.getPacksList(dataUrlParam));
 
 
@@ -32,9 +38,13 @@ export const PaginationCards = () => {
   };
 
   const handleChangePageCount = (event: SelectChangeEvent) => {
-    // setPageCount(event.target.value as string);
-    setPageCount(+event.target.value);
 
+    setPageCount(+event.target.value);
+    // const searchParams={
+    //   page: page,
+    //   pageCount: +event.target.value
+    // }
+    // packsListActions.setSearchParams(searchParams);
     dispatch(packsListThunks.getPacksList(dataUrlParam));
 
 
