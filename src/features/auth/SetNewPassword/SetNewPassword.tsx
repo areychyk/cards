@@ -12,7 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import s from "features/auth/login/styles.module.css";
-import { Button } from "common/components/Button/Button";
+import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import Typography from "@mui/material/Typography";
 import { useAppDispatch } from "common/hooks";
 
@@ -101,7 +101,7 @@ export const SetNewPassword = () => {
         </div>
 
 
-        <Button
+        <ButtonForAuth
           type={"submit"}
           style={{
             background: "#366EFF",
@@ -118,7 +118,7 @@ export const SetNewPassword = () => {
           }}
         >
           Sign In
-        </Button>
+        </ButtonForAuth>
 
 
       </form>

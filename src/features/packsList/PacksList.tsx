@@ -12,6 +12,7 @@ import FilterAltOffOutlinedIcon from "@mui/icons-material/FilterAltOffOutlined";
 import { FilterClear } from "features/packsList/FilterClear/FilterClear";
 import { PaginationCards } from "features/packsList/PaginationCards/PaginationCards";
 import { AddNewPack } from "features/packsList/AddNewPack/AddNewPack";
+import { Button } from "common/components/Button/Button";
 
 export const PacksList = () => {
   const [showModelAddNewPack,setShowModelAddNewPack] = useState<boolean>(false)
@@ -34,9 +35,7 @@ export const PacksList = () => {
 <div className={showModelAddNewPack ? s.showModelWindow:""}>
       <div className={s.wrapperTitleAndButton }>
         <h2 className={s.title}>Packs list</h2>
-        <button className={s.button} onClick={onAddNewPack}>
-          Add new pack
-        </button>
+        <Button title={"Add new pack"} onClickHandler={onAddNewPack}/>
       </div>
 
       <div className={s.blockFilter}>

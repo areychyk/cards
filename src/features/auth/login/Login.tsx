@@ -8,7 +8,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useForm } from "react-hook-form";
 import { ArgLoginType } from "features/auth/auth.api";
-import { Button } from "common/components/Button/Button";
+import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
@@ -138,7 +138,7 @@ export const Login = () => {
         </NavLink>
 
 
-        <Button
+        <ButtonForAuth
           type={"submit"}
           style={{
             background: "#366EFF",
@@ -155,7 +155,7 @@ export const Login = () => {
           }}
         >
           Sign In
-        </Button>
+        </ButtonForAuth>
 
         <div className={s.text}>
           <Typography variant={"caption"}>Don't have an account?</Typography>

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectProfile } from "app/App.selector";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   idUserCards: string
@@ -17,6 +18,17 @@ type Props = {
 export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
   const dispatch = useAppDispatch();
   const profile = useSelector(selectProfile);
+  const navigate = useNavigate()
+
+
+  const onClickLearnPack=()=>{
+    navigate('/cards')
+  }
+
+
+  const onClickEditPack=()=>{
+
+  }
 
 
   const onClickDeletePack = () => {
@@ -27,13 +39,12 @@ export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
 
   };
 
-
   return (
     <div className={s.actionsCompWrapper}>
-      <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} />
+      <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickLearnPack}/>
 
       {profile && profile._id === idUserCards && <>
-        <BorderColorOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} />
+        <BorderColorOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickEditPack}/>
         <DeleteOutlineOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickDeletePack} />
       </>
       }

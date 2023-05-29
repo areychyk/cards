@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Input, InputLabel } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import { ArgForgotType, ArgLoginType, ArgRegisterType } from "features/auth/auth.api";
-import { Button } from "common/components/Button/Button";
+import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authThunks } from "features/auth/auth.slice";
@@ -80,7 +80,7 @@ const navigate = useNavigate()
         </div>
 
 
-        <Button
+        <ButtonForAuth
           type={"submit"}
           style={{
             background: "#366EFF",
@@ -97,7 +97,7 @@ const navigate = useNavigate()
           }}
         >
           Send Instructions
-        </Button>
+        </ButtonForAuth>
 
         <div className={s.textRememberPassword}>
           <Typography variant={"caption"}>Did you remember your password?</Typography>

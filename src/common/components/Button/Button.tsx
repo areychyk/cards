@@ -1,32 +1,19 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
-import s from "common/components/Button/styles.module.css";
+import React, { FC } from "react";
 
-type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement>
+import s from "./styles.module.css";
 
-type Props = DefaultButtonPropsType & {
-  xType?: string
-
+type Props = {
+  title: string
+  onClickHandler: () => void
 }
 
-export const Button: FC<Props> = ({
-                                    xType,
-                                    className,
-                                    disabled,
 
-                                    ...restProps
-                                  }) => {
-  const finalClassName = (
-    s.button +
-    (disabled ? ` ${s.disabled}` : " "));
-
-
-
+export const Button: FC<Props> = ({ onClickHandler, title }) => {
   return (
-    <button
-      disabled={disabled}
-      className={finalClassName}
-      {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
-    />
+    <button className={s.button} onClick={onClickHandler}>
+
+      {title}
+    </button>
   );
 };
+

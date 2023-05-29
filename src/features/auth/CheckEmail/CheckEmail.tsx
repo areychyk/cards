@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectEmailForForgotPassword } from "features/auth/CheckEmail/CheckEmail.selector";
 import s from "features/auth/ForgotPassword/styles.module.css";
 import Typography from "@mui/material/Typography";
-import { Button } from "common/components/Button/Button";
+import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import { useNavigate } from "react-router-dom";
 import { CompWrapperForContent } from "common/components/CompWrapperForContent";
 
@@ -21,9 +21,9 @@ export const CheckEmail = () => {
         <Typography variant={"caption"}>We’ve sent an Email with instructions to {emailForForgotPassword} </Typography>
       </div>
 
-      <Button onClick={navigateToSignIn}
-              type={"submit"}
-              style={{
+      <ButtonForAuth onClick={navigateToSignIn}
+                     type={"submit"}
+                     style={{
                 background: "#366EFF",
                 color: "#FFFFFF",
                 border: "none",
@@ -38,7 +38,7 @@ export const CheckEmail = () => {
               }}
       >
         Back to login
-      </Button>
+      </ButtonForAuth>
 
     </CompWrapperForContent>
   );

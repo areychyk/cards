@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Checkbox, FormControl, FormControlLabel, FormGroup, Input, InputLabel } from "@mui/material";
 import { ArgAddNewPackType, ArgPacksListType } from "features/packsList/packsList.api";
-import { Button } from "common/components/Button/Button";
+import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
 import { toast } from "react-toastify";
@@ -91,7 +91,7 @@ export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
           </FormGroup>
 
 
-          <Button
+          <ButtonForAuth
             type={"submit"}
             style={{
               background: "#366EFF",
@@ -104,11 +104,12 @@ export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
               fontSize: "16px",
               lineHeight: "20px",
               letterSpacing: "0.01em",
-              fontWeight: "500"
+              fontWeight: "500",
+              cursor:"pointer"
             }}
           >
             Add New Pack
-          </Button>
+          </ButtonForAuth>
 
 
         </form>

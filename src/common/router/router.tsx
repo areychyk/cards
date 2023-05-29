@@ -9,6 +9,7 @@ import { ForgotPassword } from "features/auth/ForgotPassword/ForgotPassword";
 import { SetNewPassword } from "features/auth/SetNewPassword/SetNewPassword";
 import { CheckEmail } from "features/auth/CheckEmail/CheckEmail";
 import React from "react";
+import { Cards } from "features/cards/Cards";
 
 
 // const router = createBrowserRouter([
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
           {
             path: "profile",
             element: <Profile />
+          },
+          {
+            path: "cards",
+            element: <Cards />
           },
         ]
       },
