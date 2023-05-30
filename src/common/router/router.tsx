@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
             element: <Profile />
           },
           {
-            path: "cards",
+            path: "cards/:_id",
             element: <Cards />
           },
         ]
