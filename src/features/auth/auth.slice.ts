@@ -8,10 +8,8 @@ import {
   AuthApi,
   ProfileType
 } from "features/auth/auth.api";
-
-import { statusCode } from "common/enums";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
-
+import { appActions } from "app/app.slice";
 
 
 const forgot = createAppAsyncThunk<{ emailForForgotPassword: string }, ArgForgotType>("auth/forgot", async (arg, { rejectWithValue }) => {
@@ -20,29 +18,26 @@ const forgot = createAppAsyncThunk<{ emailForForgotPassword: string }, ArgForgot
 });
 
 const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg, thunkAPI) => {
-  return  thunkTryCatch(thunkAPI,async ()=>{
+  return thunkTryCatch(thunkAPI, async () => {
     await AuthApi.register(arg);
   });
 });
 
-const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/initializeApp", async (_, thunkAPI) => {
-  // const res = await AuthApi.me();
-  // if (res.statusText === statusCode.Success) {
-  //
-  //   return { profile: res.data };
-  // } else {
-  //   return rejectWithValue(null);
-  // }
 
-  return thunkTryCatch(thunkAPI,async ()=>{
+const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/initializeApp", async (_, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    appActions.setAppInitialized({ isAppInitialized: true });
     const res = await AuthApi.me();
     return { profile: res.data };
+  }).finally(() => {
+    appActions.setAppInitialized({ isAppInitialized: false });
   });
 });
 
+
 const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/login", async (arg, thunkAPI) => {
 
-  return thunkTryCatch(thunkAPI,async ()=>{
+  return thunkTryCatch(thunkAPI, async () => {
     const res = await AuthApi.login(arg);
     return { profile: res.data };
   });

@@ -5,8 +5,8 @@ import s from "features/packsList/SearchValue/styles.module.css";
 import { useAppDispatch } from "common/hooks";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useSelector } from "react-redux";
-import { selectPacksList, selectProfileId } from "features/packsList/packsList.selectors";
 import { ArgPacksListType } from "features/packsList/packsList.api";
+import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
 
 export const ShowPacksCards = () => {
   const dispatch = useAppDispatch();

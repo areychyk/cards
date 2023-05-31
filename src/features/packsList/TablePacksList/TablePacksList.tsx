@@ -7,10 +7,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
-import { selectPacksList } from "features/packsList/packsList.selectors";
+
 import {
   ActionsTablePacksCards
 } from "features/packsList/TablePacksList/ActionsTablePacksCards/ActionsTablePacksCards";
+import { selectPacksList } from "common/selectors/packList.selectors";
 
 
 

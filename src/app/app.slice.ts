@@ -21,6 +21,9 @@ const slice = createSlice({
     },
     setError: (state, action: PayloadAction<{ error: string | null }>) => {
       state.error = action.payload.error;
+    },
+    setAppInitialized:(state, action:PayloadAction<{ isAppInitialized: boolean }>)=>{
+      state.isAppInitialized=action.payload.isAppInitialized
     }
   },
   extraReducers: (builder) => {

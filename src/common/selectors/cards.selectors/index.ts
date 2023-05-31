@@ -1,0 +1,1 @@
+export {selectCards} from 'common/selectors/cards.selectors/cards.selector'

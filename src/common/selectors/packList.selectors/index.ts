@@ -1,0 +1,1 @@
+export {selectPacksList} from './packList.selector'

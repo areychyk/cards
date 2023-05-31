@@ -1,13 +1,14 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC } from "react";
 import s from "./styles.module.css";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { useSelector } from "react-redux";
-import { selectProfile } from "app/App.selector";
+
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
 import { useNavigate } from "react-router-dom";
+import { selectProfile } from "common/selectors/auth.selectors";
 
 type Props = {
   idUserCards: string

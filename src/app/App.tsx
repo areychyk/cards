@@ -5,14 +5,18 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { Container, LinearProgress } from "@mui/material";
+import { Outlet, useNavigate } from "react-router-dom";
+import { CircularProgress, Container, LinearProgress, Stack } from "@mui/material";
 import { useActions } from "common/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import { useSelector } from "react-redux";
-import { selectIsLoading, selectIsLoggedIn } from "app/App.selector";
+
 import { ProfileInitialized } from "features/profile/ProfileInitialized/ProfileInitialized";
-import { PrivateRoutes } from "common/components/PrivateRoutes/PrivateRoutes";
+import { selectIsAppInitialized, selectIsLoading } from "common/selectors/app.selectors";
+import { selectIsLoggedIn } from "common/selectors/auth.selectors";
+import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
+import { selectPacksList } from "common/selectors/packList.selectors";
+import { selectPage } from "common/selectors/packList.selectors/packList.selector";
 
 
 export default function App() {
@@ -20,7 +24,9 @@ export default function App() {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
-  const { initializeApp  } = useActions(authThunks);
+  const page = useSelector(selectPage);
+  const isAppInitialized = useSelector(selectIsAppInitialized);
+  const { initializeApp } = useActions(authThunks);
 
 
   useEffect(() => {
@@ -32,24 +38,37 @@ export default function App() {
   };
 
 
+  const heightContent = ()=>{
+    if(page===4){
+      return "100vh"
+    }
+  }
+//page === 4 && height:100vh
   return (
-    <div className="App" style={{background: '#F9F9FA', height:"100vh"}}>
-      <Box sx={{ flexGrow: 1 }} >
-        <AppBar position="static" color={"default"} style={{height:"60px"}}>
-          <Toolbar >
+    <div className="App" style={{ background: "#F9F9FA",height:`${heightContent}`}}>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" color={"default"} style={{ height: "60px" }}>
+          <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               IT-INCUBATOR
             </Typography>
             {!isLoggedIn && <Button color="inherit" onClick={onClickSignIn}>Sign in</Button>}
-            {isLoggedIn &&<ProfileInitialized/>}
+            {isLoggedIn && <ProfileInitialized />}
           </Toolbar>
         </AppBar>
-        {isLoading && <LinearProgress color={"inherit"} style={{height:'5px'}}/>}
-        <Container fixed >
+        {isLoading && <LinearProgress color={"inherit"} style={{ height: "5px" }} />}
+        <Container fixed>
 
+          {isAppInitialized
+            ?
+            <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+              <CircularProgress color="inherit" />
+            </Stack>
+            :
+            <Outlet />
+          }
+          {/*<Outlet/>*/}
 
-          <Outlet/>
-          {/*<PrivateRoutes/>*/}
         </Container>
       </Box>
     </div>
