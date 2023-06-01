@@ -7,8 +7,8 @@
 
 .blockFilter{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    /*flex-wrap: wrap;*/
+    justify-content: space-around;
     align-items: center;
     gap: 0px 60px;
 }
@@ -46,4 +46,6 @@
 
 .tablePacksListBlock{
     padding-top: 24px;
+    width: 100%;
+    /*padding: 24px 136px 0 136px;*/
 }

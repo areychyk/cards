@@ -6,6 +6,7 @@ import s from './styles.module.css'
 import avatarPromo from './../../../common/assets/images/user-shadow.svg'
 import { selectProfile } from "common/selectors/auth.selectors";
 
+
 export const ProfileInitialized = () => {
 
   const profile = useSelector(selectProfile);

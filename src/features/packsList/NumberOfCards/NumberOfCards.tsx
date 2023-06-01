@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Slider } from "@mui/material";
 import s from "./styles.module.css";
@@ -11,9 +11,16 @@ export const NumberOfCards = () => {
 
   const dispatch = useAppDispatch();
   // const [value, setValue] = React.useState<number[]>([20, 37]);
-  const [minValue, setMinValue] = React.useState<number>(5);
-  const [maxValue, setMaxValue] = React.useState<number>(30);
+  const [minValue, setMinValue] = React.useState<number>(0);
+  const [maxValue, setMaxValue] = React.useState<number>(10);
 
+  const dataUrlParam: ArgPacksListType = {
+    max: maxValue,
+    min: minValue
+  };
+  useEffect(()=>{
+    dispatch(packsListThunks.getPacksList(dataUrlParam));
+  },[])
 
   const handleChange = (event: Event, value: number | number[]) => {
     if (typeof value === "number") {
@@ -26,10 +33,7 @@ export const NumberOfCards = () => {
 
   };
 
-  const dataUrlParam: ArgPacksListType = {
-    max: maxValue,
-    min: minValue
-  };
+
 
   const onChangeMinMaxValue = () => {
     dispatch(packsListThunks.getPacksList(dataUrlParam));

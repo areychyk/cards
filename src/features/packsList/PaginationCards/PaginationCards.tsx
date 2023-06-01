@@ -26,7 +26,7 @@ export const PaginationCards = () => {
     }
   },[packsList])
 
-  console.log({ packsList });
+  // console.log({ packsList });
 
 
   // const [page, setPage] = useState<number>(packsList ? packsList.page : 1);

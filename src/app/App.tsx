@@ -38,16 +38,13 @@ export default function App() {
   };
 
 
-  const heightContent = ()=>{
-    if(page===4){
-      return "100vh"
-    }
-  }
+
 //page === 4 && height:100vh
   return (
-    <div className="App" style={{ background: "#F9F9FA",height:`${heightContent}`}}>
+    // <div className="App" style={{ background: "#F9F9FA",height:`${page===4 && "100vh"}`}}>
+    <div className="App" style={{ background: "#F9F9FA",height:"100vh"}}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color={"default"} style={{ height: "60px" }}>
+        <AppBar position="static" color={"default"} style={{ height: "60px", padding:"0 136px" }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               IT-INCUBATOR
@@ -57,17 +54,17 @@ export default function App() {
           </Toolbar>
         </AppBar>
         {isLoading && <LinearProgress color={"inherit"} style={{ height: "5px" }} />}
-        <Container fixed>
+        <Container fixed >
 
-          {isAppInitialized
-            ?
-            <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
-              <CircularProgress color="inherit" />
-            </Stack>
-            :
-            <Outlet />
-          }
-          {/*<Outlet/>*/}
+          {/*{isAppInitialized*/}
+          {/*  ?*/}
+          {/*  <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">*/}
+          {/*    <CircularProgress color="inherit" />*/}
+          {/*  </Stack>*/}
+          {/*  :*/}
+          {/*  <Outlet />*/}
+          {/*}*/}
+          <Outlet/>
 
         </Container>
       </Box>

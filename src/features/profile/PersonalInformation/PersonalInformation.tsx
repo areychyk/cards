@@ -4,12 +4,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { authThunks } from "features/auth/auth.slice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectProfile } from "features/profile/PersonalInformation/PersonalInformation.selector";
+
 import { EditableName } from "features/profile/PersonalInformation/EditableName/EditableName";
 import { ArgEditProfileType } from "features/auth/auth.api";
 import s from "./styles.module.css";
 import { EditAvatar } from "features/profile/PersonalInformation/EditAvatar/EditAvatar";
 import { useAppDispatch } from "common/hooks";
+import { selectProfile } from "common/selectors/auth.selectors";
 
 
 export const PersonalInformation = () => {

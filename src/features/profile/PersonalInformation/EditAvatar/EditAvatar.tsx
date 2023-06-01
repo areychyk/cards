@@ -2,8 +2,9 @@ import React from "react";
 import s from './styles.module.css'
 import avatarPromo from "common/assets/images/user-shadow.svg";
 import { useSelector } from "react-redux";
-import { selectProfile } from "features/profile/ProfileInitialized/ProfileInitialized.selector";
+
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import { selectProfile } from "common/selectors/auth.selectors";
 
 
 export const EditAvatar = () => {
