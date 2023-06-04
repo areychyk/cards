@@ -12,15 +12,19 @@ import {
   ActionsTablePacksCards
 } from "features/packsList/TablePacksList/ActionsTablePacksCards/ActionsTablePacksCards";
 import { selectPacksList } from "common/selectors/packList.selectors";
+import { useNavigate } from "react-router-dom";
 
 
 
 export const TablePacksList = () => {
 
   const packsList = useSelector(selectPacksList);
+  const navigate = useNavigate()
 
-
-
+  const onClickLearnPack=(idCard:string)=>{
+    navigate(`/cards/${idCard}`)
+    // console.log(UserId);
+  }
 
 
   return (
@@ -41,7 +45,7 @@ export const TablePacksList = () => {
               key={pack._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" style={{cursor:"pointer"}} onClick={()=> {onClickLearnPack(pack._id)}}>
                 {pack.name}
 
               </TableCell>

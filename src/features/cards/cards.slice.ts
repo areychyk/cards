@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
-import { ArgCardsType, CardsApi, ResponseType } from "features/cards/cards.api";
+import { ArgCardsType, CardsApi, ResponseType, ResponseTypeCards } from "features/cards/cards.api";
+import { clearCards } from "common/actions";
 
 const getCards = createAppAsyncThunk<{cards:ResponseType},ArgCardsType>("cards/getCards",async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async ()=>{
@@ -11,17 +12,22 @@ const getCards = createAppAsyncThunk<{cards:ResponseType},ArgCardsType>("cards/g
 })
 
 
-
 const slice = createSlice({
   name:"cards",
   initialState: {
     cards: null as ResponseType | null,
   },
-  reducers:{},
+  reducers:{
+
+  },
   extraReducers:builder => {
     builder
       .addCase(getCards.fulfilled,(state, action)=>{
         state.cards=action.payload.cards
+      })
+      .addCase(clearCards,(state, action)=>{
+        debugger
+       state.cards=null
       })
   }
 })

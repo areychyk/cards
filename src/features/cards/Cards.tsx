@@ -3,9 +3,10 @@ import { BackSpace } from "common/components/BackSpace/BackSpace";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "common/hooks";
-import { cardsThunks } from "features/cards/cards.slice";
+import { cardsActions, cardsThunks } from "features/cards/cards.slice";
 import { selectCards } from "common/selectors/cards.selectors";
 import { Button } from "common/components/Button/Button";
+import { clearCards } from "common/actions";
 
 
 export const Cards = () => {
@@ -16,6 +17,10 @@ export const Cards = () => {
 
   useEffect(() => {
     dispatch(cardsThunks.getCards({ cardsPack_id: _id }));
+    return ()=>{
+      dispatch(clearCards)
+      console.log('comp dead');
+    }
   }, []);
 
   const cards = useSelector(selectCards);

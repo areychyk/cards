@@ -22,10 +22,10 @@ export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
   const navigate = useNavigate()
 
 
-  const onClickLearnPack=(idCard:string)=>{
-    navigate(`/cards/${idCard}`)
-    // console.log(UserId);
-  }
+  // const onClickLearnPack=(idCard:string)=>{
+  //   navigate(`/cards/${idCard}`)
+  //   // console.log(UserId);
+  // }
 
 
   const onClickEditPack=()=>{
@@ -43,9 +43,7 @@ export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
 
   return (
     <div className={s.actionsCompWrapper}>
-      <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={()=> {
-        onClickLearnPack(idCard);
-      }}/>
+      <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} aria-disabled={true}/>
 
       {profile && profile._id === idUserCards && <>
         <BorderColorOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickEditPack}/>

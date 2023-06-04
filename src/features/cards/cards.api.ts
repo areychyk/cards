@@ -1,4 +1,4 @@
-import { instanceForSetNewPassword } from "common/api/common.api";
+import { instance, instanceForSetNewPassword } from "common/api/common.api";
 
 
 export const CardsApi={
