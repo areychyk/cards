@@ -11,6 +11,8 @@ import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
 
 
 type Props = {
@@ -29,6 +31,7 @@ const schema = yup.object().shape({
 
 export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
 
+  const userId=useSelector(selectProfileId)
   const dispatch = useAppDispatch();
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<NewPackFormType>({
@@ -54,11 +57,11 @@ export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
 
     };
 
-    dispatch(packsListThunks.addNewPack(dataUrlParam)).then(() => {
+    dispatch(packsListThunks.addNewPack(dataUrlParam))
+      .then(() => {
       setShowModelAddNewPack(false);
-      dispatch(packsListThunks.getPacksList({}));
+      dispatch(packsListThunks.getPacksList({user_id:userId}));
     });
-    console.log(data);
     reset();
 
   };

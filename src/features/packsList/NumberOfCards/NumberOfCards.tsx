@@ -1,26 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import { Slider } from "@mui/material";
 import s from "./styles.module.css";
 import { useAppDispatch } from "common/hooks";
 import { ArgPacksListType } from "features/packsList/packsList.api";
-import { packsListThunks } from "features/packsList/packsList.slice";
+import {  packsListThunks } from "features/packsList/packsList.slice";
+import { useSelector } from "react-redux";
+import { selectPacksList, selectSearchParams } from "common/selectors/packList.selectors/packList.selector";
 
 
 export const NumberOfCards = () => {
-
+  const searchParams = useSelector(selectSearchParams);
+  const packsList = useSelector(selectPacksList);
   const dispatch = useAppDispatch();
-  // const [value, setValue] = React.useState<number[]>([20, 37]);
-  const [minValue, setMinValue] = React.useState<number>(0);
-  const [maxValue, setMaxValue] = React.useState<number>(10);
+
+  const [minValue, setMinValue] = React.useState<number>(searchParams&&searchParams.min);
+  const [maxValue, setMaxValue] = React.useState<number>(searchParams&&searchParams.max);
 
   const dataUrlParam: ArgPacksListType = {
     max: maxValue,
     min: minValue
   };
-  useEffect(()=>{
-    dispatch(packsListThunks.getPacksList(dataUrlParam));
-  },[])
+
 
   const handleChange = (event: Event, value: number | number[]) => {
     if (typeof value === "number") {
@@ -55,7 +56,7 @@ export const NumberOfCards = () => {
           onChangeCommitted={onChangeMinMaxValue}
           value={[minValue, maxValue]}
           onChange={handleChange}
-          max={50}
+          max={packsList?packsList.maxCardsCount:50}
           style={{ margin: "5px 25px" }}
 
 

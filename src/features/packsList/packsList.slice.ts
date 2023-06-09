@@ -9,12 +9,9 @@ import {
 
 
 const getPacksList = createAppAsyncThunk<{packsList:PacksListResponseType}, ArgPacksListType>("packsList/getPacksList", async (arg, thunkAPI) => {
-
-
   return thunkTryCatch(thunkAPI, async () => {
     const res = await PacksListApi.getPacks(arg);
     return {packsList:res.data}
-
   });
 });
 
@@ -39,20 +36,20 @@ const slice = createSlice({
       page: 1,
       pageCount: 4,
       min:0,
-      max:10
+      max:50
     },
 
   },
-  reducers: {
-    setSearchParams:(state,action)=>{
-      console.log(action.payload);
-      state.searchParams=action.payload
-    }
-  },
+  reducers: {},
   extraReducers:builder => {
     builder
       .addCase(getPacksList.fulfilled, (state, action)=>{
         state.packsList=action.payload.packsList
+        const packsList = action.payload.packsList
+        state.searchParams.min=packsList.minCardsCount
+        state.searchParams.max=packsList.maxCardsCount
+        state.searchParams.page=packsList.page
+        state.searchParams.pageCount=packsList.pageCount
 
       })
   }

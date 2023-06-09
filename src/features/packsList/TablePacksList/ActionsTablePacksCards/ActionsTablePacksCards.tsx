@@ -19,13 +19,8 @@ type Props = {
 export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
   const dispatch = useAppDispatch();
   const profile = useSelector(selectProfile);
-  const navigate = useNavigate()
 
 
-  // const onClickLearnPack=(idCard:string)=>{
-  //   navigate(`/cards/${idCard}`)
-  //   // console.log(UserId);
-  // }
 
 
   const onClickEditPack=()=>{
