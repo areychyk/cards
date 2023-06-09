@@ -12,6 +12,7 @@ const getCards = createAppAsyncThunk<{cards:ResponseType},ArgCardsType>("cards/g
 })
 
 
+
 const slice = createSlice({
   name:"cards",
   initialState: {
@@ -26,7 +27,7 @@ const slice = createSlice({
         state.cards=action.payload.cards
       })
       .addCase(clearCards,(state, action)=>{
-        debugger
+
        state.cards=null
       })
   }

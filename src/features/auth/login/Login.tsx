@@ -70,7 +70,7 @@ export const Login = () => {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const onSubmitHandler = (data: ArgLoginType) => {
-    console.log(data);
+    // console.log(data);
     dispatch(authThunks.login(data)).then(()=>{
       toast.success('Вы успешно залогинились')
     })

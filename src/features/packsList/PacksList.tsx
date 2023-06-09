@@ -20,6 +20,7 @@ export const PacksList = () => {
   const dispatch = useAppDispatch();
   const packsList = useSelector(selectPacksList);
   useEffect(() => {
+
     dispatch(packsListThunks.getPacksList({}));
   }, []);
 

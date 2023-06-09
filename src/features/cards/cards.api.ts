@@ -3,6 +3,7 @@ import { instance, instanceForSetNewPassword } from "common/api/common.api";
 
 export const CardsApi={
   getCards:(data:ArgCardsType)=>{
+		debugger
     return instanceForSetNewPassword.get<ResponseType>("/cards/card",{
       params:{
         cardsPack_id:data.cardsPack_id

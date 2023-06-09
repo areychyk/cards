@@ -26,11 +26,11 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
 
 const initializeApp = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/initializeApp", async (_, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    appActions.setAppInitialized({ isAppInitialized: true });
+    // appActions.setAppInitialized({ isAppInitialized: true });
     const res = await AuthApi.me();
     return { profile: res.data };
   }).finally(() => {
-    appActions.setAppInitialized({ isAppInitialized: false });
+    // appActions.setAppInitialized({ isAppInitialized: false });
   });
 });
 

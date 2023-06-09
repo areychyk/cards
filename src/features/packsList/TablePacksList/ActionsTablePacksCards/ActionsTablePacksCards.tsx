@@ -34,7 +34,8 @@ export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
 
 
   const onClickDeletePack = () => {
-    dispatch(packsListThunks.deletePack({id: idCard } )).then(()=>{
+    dispatch(packsListThunks.deletePack({id: idCard } ))
+      .then(()=>{
       dispatch(packsListThunks.getPacksList({user_id:idUserCards}));
 
     })

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError, isAxiosError } from "axios";
+import { authThunks } from "features/auth/auth.slice";
 
 
 const appInitialState = {
@@ -28,6 +29,12 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(authThunks.initializeApp.fulfilled, (state) => {
+        state.isAppInitialized = true
+      })
+      .addCase(authThunks.initializeApp.rejected, (state) => {
+        state.isAppInitialized = true
+      })
       .addMatcher((action) => {
         return action.type.endsWith("/pending");
       }, (state, action) => {

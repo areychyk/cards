@@ -16,12 +16,12 @@ export const PacksListApi={
 			} })
   },
 	addNewPack:(data:ArgAddNewPackType)=>{
-		return instanceForSetNewPassword.post("/cards/pack",data)
+		return instance.post("/cards/pack",data)
 	},
 
 	deletePack:(data:ArgDeletePackType)=>{
 
-		return instanceForSetNewPassword.delete("/cards/pack", { params:{
+		return instance.delete("/cards/pack", { params:{
 			id:data.id
 			}})
 	}

@@ -17,6 +17,7 @@ import { selectIsLoggedIn } from "common/selectors/auth.selectors";
 import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
 import { selectPacksList } from "common/selectors/packList.selectors";
 import { selectPage } from "common/selectors/packList.selectors/packList.selector";
+import { Preloader } from "common/components/Preloader/Preloader";
 
 
 export default function App() {
@@ -39,7 +40,7 @@ export default function App() {
 
 
 
-//page === 4 && height:100vh
+
   return (
     // <div className="App" style={{ background: "#F9F9FA",height:`${page===4 && "100vh"}`}}>
     <div className="App" style={{ background: "#F9F9FA",height:"100vh"}}>
@@ -56,15 +57,15 @@ export default function App() {
         {isLoading && <LinearProgress color={"inherit"} style={{ height: "5px" }} />}
         <Container fixed >
 
-          {/*{isAppInitialized*/}
-          {/*  ?*/}
-          {/*  <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">*/}
-          {/*    <CircularProgress color="inherit" />*/}
-          {/*  </Stack>*/}
-          {/*  :*/}
-          {/*  <Outlet />*/}
-          {/*}*/}
-          <Outlet/>
+          {
+            !isAppInitialized
+            ?
+            <Preloader/>
+            :
+            <Outlet />
+          }
+
+
 
         </Container>
       </Box>

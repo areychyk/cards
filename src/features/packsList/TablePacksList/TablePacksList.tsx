@@ -21,8 +21,8 @@ export const TablePacksList = () => {
   const packsList = useSelector(selectPacksList);
   const navigate = useNavigate()
 
-  const onClickLearnPack=(idCard:string)=>{
-    navigate(`/cards/${idCard}`)
+  const onClickLearnPack=( cardId:string)=>{
+    navigate(`/cards/${cardId}`)
     // console.log(UserId);
   }
 

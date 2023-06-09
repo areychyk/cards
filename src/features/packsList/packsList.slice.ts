@@ -38,6 +38,8 @@ const slice = createSlice({
     searchParams:{
       page: 1,
       pageCount: 4,
+      min:0,
+      max:10
     },
 
   },

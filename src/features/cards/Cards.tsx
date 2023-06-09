@@ -11,14 +11,14 @@ import { clearCards } from "common/actions";
 
 export const Cards = () => {
   const dispatch = useAppDispatch();
-  const { _id } = useParams();
+  const {  card_id } = useParams();
   // console.log(user_id);
 
 
   useEffect(() => {
-    dispatch(cardsThunks.getCards({ cardsPack_id: _id }));
+    dispatch(cardsThunks.getCards({ cardsPack_id: card_id }));
     return ()=>{
-      dispatch(clearCards)
+      dispatch(clearCards())
       console.log('comp dead');
     }
   }, []);
@@ -32,32 +32,34 @@ export const Cards = () => {
     navigate("/packsList");
   };
 
-  console.log(_id);
-  console.log(cards&&cards.packUserId);
+  // console.log(card_id);
+  // console.log(cards&&cards.packUserId);
   return (
     <div>
       <BackSpace title={"Back to Packs List"} onClickHandler={navigateToPacksList} />
-      {cards && ((_id === cards.packUserId)
+      {cards && ((card_id === cards.packUserId)
 
           ?
           <div>
-            {
-              cards.cards.length
-                ? <div>My cards{cards.cards.length}</div>
-                : <div>
-                  <p>This pack is empty. Click add new card to fill this pack</p>
-                  <Button title={"Add new card"} onClickHandler={() => {
-                  }} />
-                </div>
-            }
+            my
+            {/*{*/}
+            {/*  cards.cards.length*/}
+            {/*    ? <div>My cards{cards.cards.length}</div>*/}
+            {/*    : <div>*/}
+            {/*      <p>This pack is empty. Click add new card to fill this pack</p>*/}
+            {/*      <Button title={"Add new card"} onClickHandler={() => {*/}
+            {/*      }} />*/}
+            {/*    </div>*/}
+            {/*}*/}
           </div>
           :
           <div>
-            {
-              cards.cards.length
-                ? <div>Friends cards{cards.cards.length}</div>
-                : <div>This pack is empty</div>
-            }
+            fr
+            {/*{*/}
+            {/*  cards.cards.length*/}
+            {/*    ? <div>Friends cards{cards.cards.length}</div>*/}
+            {/*    : <div>This pack is empty</div>*/}
+            {/*}*/}
           </div>
 
       )
