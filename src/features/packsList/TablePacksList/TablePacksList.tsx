@@ -21,9 +21,8 @@ export const TablePacksList = () => {
   const packsList = useSelector(selectPacksList);
   const navigate = useNavigate()
 
-  const onClickLearnPack=( cardId:string)=>{
-    navigate(`/cards/${cardId}`)
-    // console.log(UserId);
+  const onClickPack=( packId:string)=>{
+    navigate(`/cards/${packId}`)
   }
 
 
@@ -45,7 +44,7 @@ export const TablePacksList = () => {
               key={pack._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row" style={{cursor:"pointer"}} onClick={()=> {onClickLearnPack(pack._id)}}>
+              <TableCell component="th" scope="row" style={{cursor:"pointer"}} onClick={()=> {onClickPack(pack._id)}}>
                 {pack.name}
 
               </TableCell>

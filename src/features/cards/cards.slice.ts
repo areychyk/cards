@@ -1,38 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
-import { ArgCardsType, CardsApi, ResponseType, ResponseTypeCards } from "features/cards/cards.api";
+import { ArgCardsType, CardsApi, ResponseType } from "features/cards/cards.api";
 import { clearCards } from "common/actions";
 
-const getCards = createAppAsyncThunk<{cards:ResponseType},ArgCardsType>("cards/getCards",async (arg, thunkAPI) => {
-  return thunkTryCatch(thunkAPI, async ()=>{
-    const res = await CardsApi.getCards(arg)
-    return {cards:res.data}
-  })
-})
-
+const getCards = createAppAsyncThunk<{ cards: ResponseType }, ArgCardsType>("cards/getCards", async (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+    const res = await CardsApi.getCards(arg);
+    return { cards: res.data };
+  });
+});
 
 
 const slice = createSlice({
-  name:"cards",
+  name: "cards",
   initialState: {
-    cards: null as ResponseType | null,
+    cards: null as ResponseType | null
   },
-  reducers:{
-
-  },
-  extraReducers:builder => {
+  reducers: {},
+  extraReducers: builder => {
     builder
-      .addCase(getCards.fulfilled,(state, action)=>{
-        state.cards=action.payload.cards
+      .addCase(getCards.fulfilled, (state, action) => {
+        state.cards = action.payload.cards;
       })
-      .addCase(clearCards,(state, action)=>{
+      .addCase(clearCards, (state, action) => {
 
-       state.cards=null
-      })
+        state.cards = null;
+      });
   }
-})
-
+});
 
 
 export const cardsReducer = slice.reducer;

@@ -1,4 +1,4 @@
-import { instance, instanceForSetNewPassword } from "common/api/common.api";
+import { instance } from "common/api/common.api";
 
 export const AuthApi = {
   register: (data: ArgRegisterType) => {
@@ -17,7 +17,7 @@ export const AuthApi = {
     return instance.post<any>("/auth/forgot", data);
   },
   setNewPassword: (data: ArgSetNewPasswordType) => {
-    return instanceForSetNewPassword.post<any>("/auth/set-new-password", data);
+    return instance.post<any>("/auth/set-new-password", data);
   },
   editProfile: (data: ArgEditProfileType) => {
     return instance.put<EditableProfileType>("auth/me", data);

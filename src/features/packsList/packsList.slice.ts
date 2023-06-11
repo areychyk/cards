@@ -25,6 +25,7 @@ const addNewPack=createAppAsyncThunk<void,ArgAddNewPackType>("packsList/addNewPa
 const deletePack=createAppAsyncThunk<void,ArgDeletePackType>("packsList/deletePack",async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async ()=>{
     await PacksListApi.deletePack(arg)
+
   })
 })
 

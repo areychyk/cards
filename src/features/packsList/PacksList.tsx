@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { packsListThunks } from "features/packsList/packsList.slice";
-import { useAppDispatch } from "common/hooks";
+import { useActions, useAppDispatch } from "common/hooks";
 import { TablePacksList } from "features/packsList/TablePacksList/TablePacksList";
 import { SearchValue } from "features/packsList/SearchValue/SearchValue";
 import { ShowPacksCards } from "features/packsList/ShowPacksCards/ShowPacksCards";
@@ -14,16 +14,16 @@ import { Button } from "common/components/Button/Button";
 export const PacksList = () => {
   const [showModelAddNewPack, setShowModelAddNewPack] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
-  // const packsList = useSelector(selectPacksList);
+  const {getPacksList} = useActions(packsListThunks)
 
   useEffect(() => {
-    dispatch(packsListThunks.getPacksList({}));
+   getPacksList({})
   }, []);
 
   const onAddNewPack = () => {
     setShowModelAddNewPack(true);
   };
+
   return (
     <div>
       {showModelAddNewPack && <AddNewPack
