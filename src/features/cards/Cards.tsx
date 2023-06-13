@@ -7,7 +7,9 @@ import { cardsThunks } from "features/cards/cards.slice";
 import { selectCards } from "common/selectors/cards.selectors";
 import { clearCards } from "common/actions";
 import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
-import { Button } from "common/components/Button/Button";
+import s from './styles.module.css'
+import { MyCards } from "features/cards/MyCards/MyCards";
+
 
 
 export const Cards = () => {
@@ -40,18 +42,7 @@ export const Cards = () => {
       {cards && ((profileId === cards.packUserId)
 
           ?
-          <div>
-            my cards
-            {
-              cards.cards.length
-                ? <div>My cards{cards.cards.length}</div>
-                : <div>
-                  <p>This pack is empty. Click add new card to fill this pack</p>
-                  <Button title={"Add new card"} onClickHandler={() => {
-                  }} />
-                </div>
-            }
-          </div>
+          <MyCards cards={cards}/>
           :
           <div>
             friend cards
