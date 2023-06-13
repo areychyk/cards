@@ -15,17 +15,24 @@ const getCards = createAppAsyncThunk<{ cards: ResponseType }, ArgCardsType>("car
 const slice = createSlice({
   name: "cards",
   initialState: {
-    cards: null as ResponseType | null
+    cards: null as ResponseType | null,
+    searchParams:{
+      page:1,
+      pageCount:4
+    }
   },
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards;
+        state.searchParams.page=action.payload.cards.page
+        state.searchParams.pageCount=action.payload.cards.pageCount
       })
       .addCase(clearCards, (state, action) => {
 
         state.cards = null;
+
       });
   }
 });

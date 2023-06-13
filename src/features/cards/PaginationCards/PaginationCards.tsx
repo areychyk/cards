@@ -1,65 +1,71 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { FormControl, MenuItem, Pagination, Select, SelectChangeEvent, Stack } from "@mui/material";
 import s from "./styles.module.css";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "common/hooks";
-import { packsListThunks } from "features/packsList/packsList.slice";
 import Box from "@mui/material/Box";
-import { selectPacksList } from "common/selectors/packList.selectors";
-import { selectSearchParams } from "common/selectors/packList.selectors/packList.selector";
+import { selectCards } from "common/selectors/cards.selectors";
+import { selectSearchParamsCards } from "common/selectors/cards.selectors/cards.selector";
+import { cardsThunks } from "features/cards/cards.slice";
+import { ArgCardsType } from "features/cards/cards.api";
 
-export const PaginationCards = () => {
 
-  const packsList = useSelector(selectPacksList);
+type Props={
+  cardsPack_id?:string
+}
+export const PaginationCards:FC<Props> = ({cardsPack_id}) => {
+
+  const cards = useSelector(selectCards);
+  const searchParamsCards = useSelector(selectSearchParamsCards);
+
   const dispatch = useAppDispatch();
-  const searchParams = useSelector(selectSearchParams);
-  const [pageCount, setPageCount] = useState<number>(searchParams && searchParams.pageCount);
-  const [page, setPage] = useState<number>(searchParams && searchParams.page);
 
-  // useEffect(()=>{
-  //   if(packsList){
-  //     setPageCount(packsList.pageCount)
-  //     setPage(packsList.page)
-  //   }
-  // },[packsList])
+  const [pageCount, setPageCount] = useState<number>(searchParamsCards.pageCount);
+  const [page, setPage] = useState<number>(searchParamsCards.page);
 
-  // const dataUrlParam: ArgPacksListType = {
-  //   page: page,
-  //   pageCount: pageCount
-  // };
 
   const handleChangePagination = (event: React.ChangeEvent<unknown>, value: number) => {
 
     setPage(value);
-    const searchParams = {
+    const searchParams:ArgCardsType= {
+      cardsPack_id,
       page: value,
       pageCount: pageCount
     };
-    dispatch(packsListThunks.getPacksList(searchParams));
+    dispatch(cardsThunks.getCards(searchParams));
   };
 
   const handleChangePageCount = (event: SelectChangeEvent) => {
 
     setPageCount(+event.target.value);
 
-    const searchParams = {
+    const searchParams:ArgCardsType = {
+      cardsPack_id,
       page: page,
       pageCount: +event.target.value
     };
 
-    dispatch(packsListThunks.getPacksList(searchParams));
+    dispatch(cardsThunks.getCards(searchParams));
 
   };
+
+  let portionCount
+
+  if(cards?.cardsTotalCount){
+     portionCount = Math.ceil(cards.cardsTotalCount / pageCount)
+  }
+
+
 
   return (
     <div className={s.paginationBlock}>
 
       <Stack spacing={2}>
         <Pagination
-          count={packsList ? packsList.cardPacksTotalCount : 10}
-          defaultPage={packsList ? packsList.page : 1}
-          page={page}
+          count={portionCount}
+          defaultPage={searchParamsCards.page}
+          page={searchParamsCards.page}
           onChange={handleChangePagination}
           shape="rounded"
           color="primary" />
@@ -78,7 +84,6 @@ export const PaginationCards = () => {
             >
               <MenuItem value={4}>4</MenuItem>
               <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
             </Select>
           </FormControl>
         </Box>

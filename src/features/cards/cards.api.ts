@@ -1,5 +1,5 @@
-import { baseURL, instance } from "common/api/common.api";
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { instance } from "common/api/common.api";
+
 
 
 export const CardsApi={
@@ -7,35 +7,14 @@ export const CardsApi={
 
     return instance.get<ResponseType>("/cards/card",{
       params:{
-				cardsPack_id:data.cardsPack_id
+				cardsPack_id:data.cardsPack_id,
+				page:data.page,
+				pageCount:data.pageCount
       }
     })
   }
 }
 
-// export const cardsApi = createApi({
-// 	reducerPath:"cardsApi",
-// 	baseQuery:fetchBaseQuery({baseUrl:baseURL}),
-// 	endpoints:(build)=>{
-// 		return{
-// 			getCards:build.query<ResponseType,ArgCardsType>({
-// 				query:(data)=>{
-// 					return{
-// 						method:'GET',
-// 						url:'/cards/card',
-// 						params:{
-// 							cardsPack_id:data.cardsPack_id
-// 						}
-// 					}
-// 				}
-// 			})
-//
-// 		}
-// }
-// })
-//
-//
-// export const {}= cardsApi
 
 
 export type ArgCardsType={

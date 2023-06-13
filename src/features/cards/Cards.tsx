@@ -7,22 +7,21 @@ import { cardsThunks } from "features/cards/cards.slice";
 import { selectCards } from "common/selectors/cards.selectors";
 import { clearCards } from "common/actions";
 import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
-import s from './styles.module.css'
 import { MyCards } from "features/cards/MyCards/MyCards";
-
+import { FriendsCards } from "features/cards/FriendsCards/FriendsCards";
+import { PaginationCards } from "features/cards/PaginationCards/PaginationCards";
 
 
 export const Cards = () => {
   const dispatch = useAppDispatch();
-  const {packId} = useParams();
-
+  const { packId } = useParams();
 
 
   useEffect(() => {
     dispatch(cardsThunks.getCards({ cardsPack_id: packId }));
-    return ()=>{
-      dispatch(clearCards())
-    }
+    return () => {
+      dispatch(clearCards());
+    };
   }, []);
 
   const cards = useSelector(selectCards);
@@ -35,28 +34,21 @@ export const Cards = () => {
   };
 
 
-
   return (
     <div>
       <BackSpace title={"Back to Packs List"} onClickHandler={navigateToPacksList} />
       {cards && ((profileId === cards.packUserId)
 
           ?
-          <MyCards cards={cards}/>
+          <MyCards cards={cards} />
           :
-          <div>
-            friend cards
-            {
-              cards.cards.length
-                ? <div>Friends cards{cards.cards.length}</div>
-                : <div>This pack is empty</div>
-            }
-          </div>
+          <FriendsCards cards={cards} />
 
       )
 
       }
 
+      <PaginationCards cardsPack_id={packId}  />
 
     </div>
   );

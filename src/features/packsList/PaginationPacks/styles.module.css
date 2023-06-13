@@ -1,0 +1,29 @@
+
+
+.paginationBlock{
+    padding-top: 36px;
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+
+
+.showCardPageBlock{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+}
+
+
+.textSelect{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+
+
+    color: #000000;
+}

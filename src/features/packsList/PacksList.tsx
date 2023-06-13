@@ -7,7 +7,7 @@ import { ShowPacksCards } from "features/packsList/ShowPacksCards/ShowPacksCards
 import s from "./styles.module.css";
 import { NumberOfCards } from "features/packsList/NumberOfCards/NumberOfCards";
 import { FilterClear } from "features/packsList/FilterClear/FilterClear";
-import { PaginationCards } from "features/packsList/PaginationCards/PaginationCards";
+import { PaginationPacks } from "features/packsList/PaginationPacks/PaginationPacks";
 import { AddNewPack } from "features/packsList/AddNewPack/AddNewPack";
 import { Button } from "common/components/Button/Button";
 
@@ -50,7 +50,7 @@ export const PacksList = () => {
           <TablePacksList />
         </div>
 
-        <PaginationCards />
+        <PaginationPacks />
 
 
       </div>
