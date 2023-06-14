@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
 
 import { ArgCardsType, CardsApi, ResponseType } from "features/cards/cards.api";
@@ -12,16 +12,30 @@ const getCards = createAppAsyncThunk<{ cards: ResponseType }, ArgCardsType>("car
 });
 
 
+const deleteCard = createAppAsyncThunk<void, string>("cards/deleteCard", async (arg, thunkAPI) => {
+  return thunkTryCatch(thunkAPI, async () => {
+     await CardsApi.deleteCard(arg);
+
+  });
+});
+
+
 const slice = createSlice({
   name: "cards",
   initialState: {
     cards: null as ResponseType | null,
     searchParams:{
       page:1,
-      pageCount:4
+      pageCount:4,
+      cardQuestion:''
+
     }
   },
-  reducers: {},
+  reducers: {
+    setSearchParamsCardQuestion:(state, action:PayloadAction<string>)=>{
+      state.searchParams.cardQuestion=action.payload
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(getCards.fulfilled, (state, action) => {
@@ -40,4 +54,4 @@ const slice = createSlice({
 
 export const cardsReducer = slice.reducer;
 export const cardsActions = slice.actions;
-export const cardsThunks = { getCards };
+export const cardsThunks = { getCards, deleteCard};

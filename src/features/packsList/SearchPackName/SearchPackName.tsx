@@ -1,22 +1,29 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import { InputAdornment, OutlinedInput } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import s from "./styles.module.css";
 import { useAppDispatch } from "common/hooks";
 import { ArgPacksListType } from "features/packsList/packsList.api";
-import { packsListThunks } from "features/packsList/packsList.slice";
+import { packsListActions, packsListThunks } from "features/packsList/packsList.slice";
+import { selectSearchParams } from "common/selectors/packList.selectors/packList.selector";
+import { useSelector } from "react-redux";
 
 
-export const SearchValue = () => {
+export const SearchPackName = () => {
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState<string>("");
+  const searchParams = useSelector(selectSearchParams);
+
 
   const dataUrlParam: ArgPacksListType = {
-    packName: value
+    packName: searchParams.packName
   };
+
+  // useEffect(() => {
+  //   dispatch(packsListThunks.getPacksList(dataUrlParam));
+  // }, [searchParams.packName]);
+
   const onChangeValue = (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    // console.log(value);
-    setValue(event.currentTarget.value);
+    dispatch(packsListActions.setSearchParamsPackName(event.currentTarget.value));
     dispatch(packsListThunks.getPacksList(dataUrlParam));
   };
 
@@ -31,8 +38,8 @@ export const SearchValue = () => {
           <SearchOutlinedIcon />
         </InputAdornment>}
         placeholder={"Provide your text"}
-        style={{ width: "413px", background: "#FFFFFF", border: "1px solid #D9D9D9" , height:"36px"}}
-        value={value}
+        style={{ width: "413px", background: "#FFFFFF", border: "1px solid #D9D9D9", height: "36px" }}
+        value={searchParams.packName}
         onChange={onChangeValue}
       />
     </div>

@@ -8,6 +8,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { ResponseType } from "features/cards/cards.api";
+import { GradeRating } from "features/cards/TableCards/GradeRating/GradeRating";
+import { useSelector } from "react-redux";
+import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
+import { ActionsTableCards } from "features/cards/TableCards/ActionsTableCards/ActionsTableCards";
+import { useParams } from "react-router-dom";
+import s from './styles.module.css'
 
 type Props = {
   cards: ResponseType
@@ -15,6 +21,8 @@ type Props = {
 
 export const TableCards:FC<Props> = ({cards}) => {
 
+
+  const profileId = useSelector(selectProfileId);
 
 
 
@@ -26,22 +34,36 @@ export const TableCards:FC<Props> = ({cards}) => {
             <TableCell>Question</TableCell>
             <TableCell>Answer</TableCell>
             <TableCell align="center">Last Updated</TableCell>
-            <TableCell align="center">Grade</TableCell>
+            <TableCell align="center" style={{width:"250px"}}>Grade</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {cards.cards.map((card) => (
-              <TableRow
-                key={card._id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" align="left" scope="row" >{card.question}</TableCell>
-                <TableCell align="left">{card.answer}</TableCell>
-                <TableCell align="center">{card.created}</TableCell>
-                <TableCell align="center">{card.grade}</TableCell>
+          {cards.cards.map((card) => {
+            const dateString = card.created;
+            const date = new Date(dateString);
 
-              </TableRow>
-            )
+            return(
+
+                <TableRow
+                  key={card._id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" align="left" scope="row">{card.question}</TableCell>
+                  <TableCell align="left">{card.answer}</TableCell>
+                  <TableCell align="center">{date.toLocaleDateString()}</TableCell>
+                  <TableCell align="center" >
+                    <div className={s.blockRatingAndActions}>
+                      <GradeRating />
+                      {(profileId === cards.packUserId) && <ActionsTableCards cardId={card._id} />}
+                    </div>
+
+
+                  </TableCell>
+
+                </TableRow>
+
+              );
+            }
           )}
         </TableBody>
       </Table>

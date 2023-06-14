@@ -151,7 +151,8 @@ export const Login = () => {
             fontSize: "16px",
             lineHeight: "20px",
             letterSpacing: "0.01em",
-            fontWeight: "500"
+            fontWeight: "500",
+            cursor:"pointer"
           }}
         >
           Sign In

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ButtonGroup } from "@mui/material";
 import Button from "@mui/material/Button";
-import s from "features/packsList/SearchValue/styles.module.css";
+import s from "features/packsList/SearchPackName/styles.module.css";
 import { useAppDispatch } from "common/hooks";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useSelector } from "react-redux";

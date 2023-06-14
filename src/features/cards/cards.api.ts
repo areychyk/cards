@@ -9,10 +9,18 @@ export const CardsApi={
       params:{
 				cardsPack_id:data.cardsPack_id,
 				page:data.page,
-				pageCount:data.pageCount
+				pageCount:data.pageCount,
+				cardQuestion:data.cardQuestion
       }
     })
-  }
+  },
+	deleteCard:(card_id:string)=>{
+		return instance.delete<any>("/cards/card",{
+			params:{
+				id:card_id
+			}
+		})
+	}
 }
 
 

@@ -37,11 +37,16 @@ const slice = createSlice({
       page: 1,
       pageCount: 4,
       min:0,
-      max:50
+      max:50,
+      packName:""
     },
 
   },
-  reducers: {},
+  reducers: {
+    setSearchParamsPackName:(state, action:PayloadAction<string>)=>{
+      state.searchParams.packName=action.payload
+    }
+  },
   extraReducers:builder => {
     builder
       .addCase(getPacksList.fulfilled, (state, action)=>{

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useActions, useAppDispatch } from "common/hooks";
 import { TablePacksList } from "features/packsList/TablePacksList/TablePacksList";
-import { SearchValue } from "features/packsList/SearchValue/SearchValue";
+import { SearchPackName } from "features/packsList/SearchPackName/SearchPackName";
 import { ShowPacksCards } from "features/packsList/ShowPacksCards/ShowPacksCards";
 import s from "./styles.module.css";
 import { NumberOfCards } from "features/packsList/NumberOfCards/NumberOfCards";
@@ -37,7 +37,7 @@ export const PacksList = () => {
         </div>
 
         <div className={s.blockFilter}>
-          <SearchValue />
+          <SearchPackName />
 
           <ShowPacksCards />
 

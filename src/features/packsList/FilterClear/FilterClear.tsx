@@ -2,7 +2,7 @@ import React from "react";
 import FilterAltOffOutlinedIcon from "@mui/icons-material/FilterAltOffOutlined";
 import s from './styles.module.css'
 import { useAppDispatch } from "common/hooks";
-import { packsListThunks } from "features/packsList/packsList.slice";
+import { packsListActions, packsListThunks } from "features/packsList/packsList.slice";
 
 
 export const FilterClear = () => {
@@ -12,6 +12,7 @@ export const FilterClear = () => {
 
   const onHandlerClearFilter=()=>{
     dispatch(packsListThunks.getPacksList({}));
+    dispatch(packsListActions.setSearchParamsPackName(''));
 
   }
   return (

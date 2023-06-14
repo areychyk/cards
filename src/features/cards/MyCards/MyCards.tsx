@@ -3,6 +3,7 @@ import { Button } from "common/components/Button/Button";
 import { ResponseType } from "features/cards/cards.api";
 import s from "./styles.module.css";
 import { TableCards } from "features/cards/TableCards/TableCards";
+import { SearchCardName } from "features/cards/SearchCardName/SearchCardName";
 
 
 type Props = {
@@ -23,6 +24,7 @@ export const MyCards: FC<Props> = ({ cards }) => {
               <Button title={"Add new card"} onClickHandler={() => {
               }} />
             </div>
+          <SearchCardName/>
             <TableCards cards={cards}/>
           </div>
           : <div className={s.wrapperForPackIsEmpty}>

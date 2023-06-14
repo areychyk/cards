@@ -15,21 +15,20 @@ import { selectPacksList } from "common/selectors/packList.selectors";
 import { useNavigate } from "react-router-dom";
 
 
-
 export const TablePacksList = () => {
 
   const packsList = useSelector(selectPacksList);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const onClickPack=( packId:string)=>{
-    navigate(`/cards/${packId}`)
-  }
+  const onClickPack = (packId: string) => {
+    navigate(`/cards/${packId}`);
+  };
 
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead style={{background:"#EFEFEF"}}>
+        <TableHead style={{ background: "#EFEFEF" }}>
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="center">Cards</TableCell>
@@ -39,21 +38,32 @@ export const TablePacksList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {packsList&&packsList.cardPacks.map((pack) => (
-            <TableRow
-              key={pack._id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" style={{cursor:"pointer"}} onClick={()=> {onClickPack(pack._id)}}>
-                {pack.name}
+          {packsList && packsList.cardPacks.map((pack) => {
+              const dateString = pack.created;
+              const date = new Date(dateString);
+              return (
+                <TableRow
+                  key={pack._id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" style={{ cursor: "pointer" }} onClick={() => {
+                    onClickPack(pack._id);
+                  }}>
+                    {pack.name}
 
-              </TableCell>
-              <TableCell align="center">{pack.cardsCount}</TableCell>
-              <TableCell align="center">{pack.created}</TableCell>
-              <TableCell align="center">{pack.user_name}</TableCell>
-              <TableCell align="center" style={{width:"100px"}}>{<ActionsTablePacksCards idUserCards={pack.user_id} idCard={pack._id}/>}</TableCell>
-            </TableRow>
-          )
+                  </TableCell>
+                  <TableCell align="center">{pack.cardsCount}</TableCell>
+                  <TableCell align="center">{date.toLocaleDateString()}</TableCell>
+                  <TableCell align="center">{pack.user_name}</TableCell>
+                  <TableCell
+                    align="center"
+                    style={{ width: "100px" }}>
+                    {<ActionsTablePacksCards idUserCards={pack.user_id} idCard={pack._id} />}
+                  </TableCell>
+                </TableRow>
+              );
+
+            }
           )}
         </TableBody>
       </Table>
