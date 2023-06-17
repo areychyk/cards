@@ -10,30 +10,33 @@ import { FilterClear } from "features/packsList/FilterClear/FilterClear";
 import { PaginationPacks } from "features/packsList/PaginationPacks/PaginationPacks";
 import { AddNewPack } from "features/packsList/AddNewPack/AddNewPack";
 import { Button } from "common/components/Button/Button";
+import { ModalWindow } from "common/components/ModalWindow/ModalWindow";
 
 export const PacksList = () => {
   const [showModelAddNewPack, setShowModelAddNewPack] = useState<boolean>(false);
 
-  const {getPacksList} = useActions(packsListThunks)
+  const { getPacksList } = useActions(packsListThunks);
 
   useEffect(() => {
-   getPacksList({})
+    getPacksList({});
   }, []);
 
-  const onAddNewPack = () => {
-    setShowModelAddNewPack(true);
-  };
+  // const onAddNewPack = () => {
+  //   setShowModelAddNewPack(true);
+  // };
 
   return (
     <div>
-      {showModelAddNewPack && <AddNewPack
-        setShowModelAddNewPack={setShowModelAddNewPack}
+      {/*{showModelAddNewPack && <AddNewPack*/}
+      {/*  onClick={setShowModelAddNewPack}*/}
 
-      />}
+      {/*/>}*/}
+
       <div className={showModelAddNewPack ? s.showModelWindow : ""}>
         <div className={s.wrapperTitleAndButton}>
           <h2 className={s.title}>Packs list</h2>
-          <Button title={"Add new pack"} onClickHandler={onAddNewPack} />
+          {/*<Button title={"Add new pack"} onClickHandler={onAddNewPack} />*/}
+          <AddNewPack/>
         </div>
 
         <div className={s.blockFilter}>

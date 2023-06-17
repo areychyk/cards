@@ -1,25 +1,21 @@
 import React, { FC } from "react";
-import { CompWrapperForContent } from "common/components/CompWrapperForContent";
-import s from "./styles.module.css";
 import { useForm } from "react-hook-form";
-import { ArgLoginType } from "features/auth/auth.api";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Checkbox, FormControl, FormControlLabel, FormGroup, Input, InputLabel } from "@mui/material";
-import { ArgAddNewPackType, ArgPacksListType } from "features/packsList/packsList.api";
+import { ArgAddNewPackType } from "features/packsList/packsList.api";
 import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
-import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
+import { ModalWindow } from "common/components/ModalWindow/ModalWindow";
+import { Button } from "common/components/Button/Button";
 
 
-type Props = {
-  setShowModelAddNewPack: (showModelAddNewPack: boolean) => void
-}
+type Props = {}
 
-type NewPackFormType={
+type NewPackFormType = {
   name: string
   private: boolean
 }
@@ -29,9 +25,9 @@ const schema = yup.object().shape({
 });
 
 
-export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
+export const AddNewPack: FC<Props> = ({}) => {
 
-  const userId=useSelector(selectProfileId)
+  const userId = useSelector(selectProfileId);
   const dispatch = useAppDispatch();
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<NewPackFormType>({
@@ -42,15 +38,12 @@ export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
     resolver: yupResolver(schema)
   });
 
-  const onclickCloseWindow = () => {
-    setShowModelAddNewPack(false);
-  };
 
   const onSubmitHandler = (data: NewPackFormType) => {
-
+    console.log(data);
     const dataUrlParam: ArgAddNewPackType = {
 
-      cardsPack:{
+      cardsPack: {
         name: data.name,
         private: data.private
       }
@@ -59,65 +52,45 @@ export const AddNewPack: FC<Props> = ({ setShowModelAddNewPack }) => {
 
     dispatch(packsListThunks.addNewPack(dataUrlParam))
       .then(() => {
-      setShowModelAddNewPack(false);
-      dispatch(packsListThunks.getPacksList({user_id:userId}));
-    });
+
+        dispatch(packsListThunks.getPacksList({ user_id: userId }));
+      });
     reset();
 
   };
 
   return (
-    <div className={s.wrapperAddNewPackComp}>
-      {/*<button onClick={onclickCloseWindow}>X</button>*/}
-      <CompWrapperForContent title={"Add new pack"} showCloseModel={true} onClick={onclickCloseWindow}>
 
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
-
-          <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
-
-            <FormControl sx={{ width: "402px" }} variant="standard">
-              <InputLabel htmlFor="standard-adornment-newPack">Name pack</InputLabel>
-              <Input id="standard-adornment-password" type={"text"}
-                     {...register("name")}
-                     placeholder="Name pack"
-                     required
-              />
-              <p style={{ color: "red", fontSize: "12px" }}>{errors.name?.message}</p>
-            </FormControl>
+    <ModalWindow titleNameModalWindow={"Add new pack"}
+                 childrenButton={<Button type={"submit"} title={"Save"} />}>
 
 
-            <FormControlLabel
-              sx={{ width: "100%", textAlign: "left" }}
-              label={"Private"}
-              control={<Checkbox {...register("private")} />}
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
+
+        <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
+
+          <FormControl sx={{ width: "100%" }} variant="standard">
+            <InputLabel htmlFor="standard-adornment-newPack">Name pack</InputLabel>
+            <Input id="standard-adornment-password" type={"text"}
+                   {...register("name")}
+                   placeholder="Name pack"
+                   required
             />
-          </FormGroup>
+            <p style={{ color: "red", fontSize: "12px" }}>{errors.name?.message}</p>
+          </FormControl>
 
 
-          <ButtonForAuth
-            type={"submit"}
-            style={{
-              background: "#366EFF",
-              color: "#FFFFFF",
-              border: "none",
-              borderRadius: "30px",
-              marginTop: "70px",
-              width: "100%",
-              padding: "17px 0",
-              fontSize: "16px",
-              lineHeight: "20px",
-              letterSpacing: "0.01em",
-              fontWeight: "500",
-              cursor:"pointer"
-            }}
-          >
-            Add New Pack
-          </ButtonForAuth>
+          <FormControlLabel
+            sx={{ width: "100%", textAlign: "left" }}
+            label={"Private"}
+            control={<Checkbox {...register("private")} />}
+          />
+          <button type={"submit"}>+</button>
+        </FormGroup>
+      </form>
 
+    </ModalWindow>
 
-        </form>
-      </CompWrapperForContent>
-    </div>
   );
 };
 
