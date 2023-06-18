@@ -17,7 +17,7 @@ export const CardsApi={
 	deleteCard:(card_id:string)=>{
 		return instance.delete<any>("/cards/card",{
 			params:{
-				id:card_id
+				id:card_id,
 			}
 		})
 	}
