@@ -4,28 +4,34 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Checkbox, FormControl, FormControlLabel, FormGroup, Input, InputLabel } from "@mui/material";
 import { ArgAddNewPackType } from "features/packsList/packsList.api";
-import { ButtonForAuth } from "common/components/ButtonForAuth/ButtonForAuth";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import { useAppDispatch } from "common/hooks";
 import { useSelector } from "react-redux";
 import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
 import { ModalWindow } from "common/components/ModalWindow/ModalWindow";
 import { Button } from "common/components/Button/Button";
+import s from "./styles.module.css";
 
 
-type Props = {}
+type Props = {
+  setOpenModal:(openModal:boolean)=>void
+  openModal:boolean
+}
 
 type NewPackFormType = {
   name: string
   private: boolean
 }
 const schema = yup.object().shape({
-  name: yup.string().required("Nane new pack is required")
+  name: yup.string().required("Nane new pack is required").min(1)
 
 });
 
 
-export const AddNewPack: FC<Props> = ({}) => {
+export const AddNewPack: FC<Props> = ({setOpenModal,openModal}) => {
+
+
+
 
   const userId = useSelector(selectProfileId);
   const dispatch = useAppDispatch();
@@ -59,10 +65,15 @@ export const AddNewPack: FC<Props> = ({}) => {
 
   };
 
+
+  const handleClose = () => {
+
+    setOpenModal(false);
+  };
+
   return (
 
-    <ModalWindow titleNameModalWindow={"Add new pack"}
-                 childrenButton={<Button type={"submit"} title={"Save"} />}>
+    <ModalWindow titleNameModalWindow={"Add new pack"} open={openModal} setOpen={setOpenModal} >
 
 
       <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -85,7 +96,12 @@ export const AddNewPack: FC<Props> = ({}) => {
             label={"Private"}
             control={<Checkbox {...register("private")} />}
           />
-          <button type={"submit"}>+</button>
+          <div className={s.buttons}>
+            <Button title={"Cancel"} onClickHandler={handleClose} colorButton={"#FCFCFC"} />
+
+            <Button type={"submit"} onClickHandler={handleClose} title={"Save"} />
+          </div>
+
         </FormGroup>
       </form>
 

@@ -1,12 +1,22 @@
-.wrapperAddNewPackComp{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    overflow: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    z-index: 99;
-    padding:30px 0;
+/*.wrapperAddNewPackComp{*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    left: 0;*/
+/*    overflow: hidden;*/
+/*    overflow-y: auto;*/
+/*    -webkit-overflow-scrolling: touch;*/
+/*    z-index: 99;*/
+/*    padding:30px 0;*/
+/*}*/
+
+
+.buttons{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 19px 15px;
+
 }

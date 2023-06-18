@@ -51,18 +51,21 @@ type Props = {
   // onClick: (showModelAddNewPack: boolean) => void
   children: React.ReactNode
   titleNameModalWindow?: string
-  childrenButton:React.ReactNode
+  open:boolean
+  setOpen:(openModal:boolean)=>void
+
 
 }
 
-export const ModalWindow: FC<Props> = ({ children, titleNameModalWindow,childrenButton }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export const ModalWindow: FC<Props> = ({ children, titleNameModalWindow,open,setOpen }) => {
+  // const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
-      <Button title={titleNameModalWindow ?? ""} onClickHandler={handleOpen} />
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -79,10 +82,7 @@ export const ModalWindow: FC<Props> = ({ children, titleNameModalWindow,children
           <div className={s.contentModalWindow}>
             {children}
           </div>
-          <div className={s.buttons}>
-            <Button title={"Cancel"} onClickHandler={handleClose} colorButton={ '#FCFCFC'} />
-            {childrenButton}
-          </div>
+
         </Box>
       </Modal>
     </div>
