@@ -14,8 +14,8 @@ import s from "./styles.module.css";
 
 
 type Props = {
-  setOpenModal:(openModal:boolean)=>void
-  openModal:boolean
+  setOpenModal: (openModal: boolean) => void
+  openModal: boolean
 }
 
 type NewPackFormType = {
@@ -23,14 +23,12 @@ type NewPackFormType = {
   private: boolean
 }
 const schema = yup.object().shape({
-  name: yup.string().required("Nane new pack is required").min(1)
+  name: yup.string().required("Name new pack is required")
 
 });
 
 
-export const AddNewPack: FC<Props> = ({setOpenModal,openModal}) => {
-
-
+export const AddNewPack: FC<Props> = ({ setOpenModal, openModal }) => {
 
 
   const userId = useSelector(selectProfileId);
@@ -62,7 +60,7 @@ export const AddNewPack: FC<Props> = ({setOpenModal,openModal}) => {
         dispatch(packsListThunks.getPacksList({ user_id: userId }));
       });
     reset();
-
+    setOpenModal(false);
   };
 
 
@@ -73,7 +71,7 @@ export const AddNewPack: FC<Props> = ({setOpenModal,openModal}) => {
 
   return (
 
-    <ModalWindow titleNameModalWindow={"Add new pack"} open={openModal} setOpen={setOpenModal} >
+    <ModalWindow titleNameModalWindow={"Add new pack"} open={openModal} setOpen={setOpenModal}>
 
 
       <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -96,13 +94,13 @@ export const AddNewPack: FC<Props> = ({setOpenModal,openModal}) => {
             label={"Private"}
             control={<Checkbox {...register("private")} />}
           />
-          <div className={s.buttons}>
-            <Button title={"Cancel"} onClickHandler={handleClose} colorButton={"#FCFCFC"} />
-
-            <Button type={"submit"} onClickHandler={handleClose} title={"Save"} />
-          </div>
 
         </FormGroup>
+        <div className={s.buttons}>
+          <Button title={"Cancel"} onClickHandler={handleClose} colorButton={"#FCFCFC"} />
+
+          <Button type={"submit"} title={"Save"} />
+        </div>
       </form>
 
     </ModalWindow>

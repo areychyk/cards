@@ -4,46 +4,45 @@ import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { useSelector } from "react-redux";
-
-import { packsListThunks } from "features/packsList/packsList.slice";
-import { useAppDispatch } from "common/hooks";
-import { useNavigate } from "react-router-dom";
 import { selectProfile } from "common/selectors/auth.selectors";
+import { DeletePack } from "features/packsList/TablePacksList/ActionsTablePacksCards/DeletePack/DeletePack";
 
 type Props = {
   idUserCards: string
-  idCard:string
+  idCard: string
+  packName: string
 }
 
 
-export const ActionsTablePacksCards: FC<Props> = ({ idUserCards,idCard }) => {
-  const dispatch = useAppDispatch();
+export const ActionsTablePacksCards: FC<Props> = ({ idUserCards, idCard, packName }) => {
+
+  const [openModal, setOpenModal] = React.useState(false);
+
+
   const profile = useSelector(selectProfile);
 
 
-
-
-  const onClickEditPack=()=>{
-
-  }
-
-
-  const onClickDeletePack = () => {
-    dispatch(packsListThunks.deletePack({id: idCard } ))
-      .then(()=>{
-      dispatch(packsListThunks.getPacksList({user_id:idUserCards}));
-
-    })
+  const onClickEditPack = () => {
 
   };
 
+
+  const onClickDeletePack = () => setOpenModal(true);
+
   return (
     <div className={s.actionsCompWrapper}>
-      <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} aria-disabled={true}/>
+      <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} aria-disabled={true} />
 
       {profile && profile._id === idUserCards && <>
-        <BorderColorOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickEditPack}/>
+        <BorderColorOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickEditPack} />
         <DeleteOutlineOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickDeletePack} />
+        {openModal && <DeletePack
+          setOpenModal={setOpenModal}
+          openModal={openModal}
+          packName={packName}
+          idUserCards={idUserCards}
+          idCard={idCard}
+        />}
       </>
       }
 

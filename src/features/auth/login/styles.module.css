@@ -1,4 +1,5 @@
 .buuton{
+    font-family: Montserrat, sans-serif;
     background: #366EFF;
     color: #FFFFFF;
     border-radius: 30px;
@@ -11,6 +12,7 @@
 
 
 .textRecovery{
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-weight: 500;
     width: 100%;
@@ -26,6 +28,7 @@
 /*}}*/
 }
 .text {
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-weight: 500;
     color: #0000008a;

@@ -4,6 +4,7 @@
 
 
 .text {
+    font-family: Montserrat, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -24,6 +25,7 @@
 }
 
 .textValue {
+    font-family: Montserrat, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;

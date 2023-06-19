@@ -58,7 +58,7 @@ export const TablePacksList = () => {
                   <TableCell
                     align="center"
                     style={{ width: "100px" }}>
-                    {<ActionsTablePacksCards idUserCards={pack.user_id} idCard={pack._id} />}
+                    {<ActionsTablePacksCards idUserCards={pack.user_id} idCard={pack._id} packName={pack.name} />}
                   </TableCell>
                 </TableRow>
               );

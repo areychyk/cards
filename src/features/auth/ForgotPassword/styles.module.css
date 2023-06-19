@@ -5,12 +5,14 @@
     margin-top: 40px;
     width: 100%;
     padding: 17px 0;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
     font-weight: 500;
 }
 
 
 .textRecovery {
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-weight: 500;
     width: 100%;
@@ -27,6 +29,7 @@
 }
 
 .textEmailAddress {
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     line-height: 24px;
     font-weight: 400;
@@ -38,6 +41,7 @@
 }
 
 .textRememberPassword {
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     line-height: 24px;
     font-weight: 400;
