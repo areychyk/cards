@@ -12,7 +12,7 @@ type Props = {
 export const FriendsCards:FC<Props> = ({cards}) => {
   return (
     <div>
-      <p className={s.textNamePack}>Friend’s Pack</p>
+      <p className={s.textNamePack}>{cards.packName}</p>
       {
         cards.cards.length
           ? <TableCards cards={cards}/>

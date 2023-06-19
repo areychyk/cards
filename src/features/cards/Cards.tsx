@@ -48,7 +48,7 @@ export const Cards = () => {
 
       }
 
-      <PaginationCards cardsPack_id={packId}  />
+      {!!cards?.cards.length&&<PaginationCards cardsPack_id={packId} />}
 
     </div>
   );

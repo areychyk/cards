@@ -64,10 +64,8 @@ export const AddNewPack: FC<Props> = ({ setOpenModal, openModal }) => {
   };
 
 
-  const handleClose = () => {
+  const handleClose = () => setOpenModal(false);
 
-    setOpenModal(false);
-  };
 
   return (
 

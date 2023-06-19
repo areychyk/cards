@@ -17,7 +17,6 @@ type Props = DefaultButtonPropsType & {
 
 
 export const Button: FC<Props> = ({ onClickHandler, title,colorButton,type }) => {
-  console.log(type);
   return (
     <button type={type??'button' } className={s.button} style={{background:`${colorButton??"#366EFF"}`, color:`${colorButton?'#000000':'#FFFFFF'}`}} onClick={onClickHandler}>
 

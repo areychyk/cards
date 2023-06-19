@@ -4,6 +4,7 @@ import { ResponseType } from "features/cards/cards.api";
 import s from "./styles.module.css";
 import { TableCards } from "features/cards/TableCards/TableCards";
 import { SearchCardName } from "features/cards/SearchCardName/SearchCardName";
+import { AddNewCards } from "features/cards/AddNewCards/AddNewCards";
 
 
 type Props = {
@@ -11,6 +12,14 @@ type Props = {
 }
 
 export const MyCards: FC<Props> = ({ cards }) => {
+
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const handleOpen = () => setOpenModal(true);
+
+
+
+
   return (
     <div>
 
@@ -20,9 +29,9 @@ export const MyCards: FC<Props> = ({ cards }) => {
           ? <div className={s.wrapperCardsComponents}>
 
             <div className={s.headerCardsPack}>
-              <p className={s.textNamePack}>My Pack</p>
-              <Button title={"Add new card"} onClickHandler={() => {
-              }} />
+              <p className={s.textNamePack}>{cards.packName}</p>
+              <Button title={"Add new card"} onClickHandler={handleOpen} />
+              {openModal && <AddNewCards setOpenModal={setOpenModal} openModal={openModal} />}
             </div>
           <SearchCardName/>
             <TableCards cards={cards}/>
