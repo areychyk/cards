@@ -22,7 +22,7 @@ export const MyCards: FC<Props> = ({ cards }) => {
 
   return (
     <div>
-
+      {openModal && <AddNewCards setOpenModal={setOpenModal} openModal={openModal} />}
 
       {
         cards.cards.length
@@ -31,15 +31,14 @@ export const MyCards: FC<Props> = ({ cards }) => {
             <div className={s.headerCardsPack}>
               <p className={s.textNamePack}>{cards.packName}</p>
               <Button title={"Add new card"} onClickHandler={handleOpen} />
-              {openModal && <AddNewCards setOpenModal={setOpenModal} openModal={openModal} />}
+
             </div>
           <SearchCardName/>
             <TableCards cards={cards}/>
           </div>
           : <div className={s.wrapperForPackIsEmpty}>
             <p>This pack is empty. Click add new card to fill this pack</p>
-            <Button title={"Add new card"} onClickHandler={() => {
-            }} />
+            <Button title={"Add new card"} onClickHandler={handleOpen} />
           </div>
       }
     </div>

@@ -8,10 +8,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ArgAddNewPackType } from "features/packsList/packsList.api";
 import { packsListThunks } from "features/packsList/packsList.slice";
 import * as yup from "yup";
+import { ArgCreateCardType, ResponseType } from "features/cards/cards.api";
+import { useAppDispatch } from "common/hooks";
+import { cardsThunks } from "features/cards/cards.slice";
+import { useParams } from "react-router-dom";
 
 type Props = {
   setOpenModal: (openModal: boolean) => void
   openModal: boolean
+
 }
 type NewCardFormType = {
   questions: string
@@ -24,8 +29,8 @@ const schema = yup.object().shape({
 });
 
 export const AddNewCards:FC<Props> = ({setOpenModal,openModal}) => {
-
-
+  const dispatch = useAppDispatch();
+  const { packId } = useParams();
   const handleClose = () => setOpenModal(false);
 
 
@@ -40,21 +45,21 @@ export const AddNewCards:FC<Props> = ({setOpenModal,openModal}) => {
 
 
   const onSubmitHandler = (data: NewCardFormType) => {
-    console.log(data);
-    // const dataUrlParam: ArgAddNewPackType = {
-    //
-    //   cardsPack: {
-    //     name: data.name,
-    //     private: data.private
-    //   }
-    //
-    // };
-    //
-    // dispatch(packsListThunks.addNewPack(dataUrlParam))
-    //   .then(() => {
-    //
-    //     dispatch(packsListThunks.getPacksList({ user_id: userId }));
-    //   });
+    const dataUrlParam: ArgCreateCardType = {
+
+     card:{
+       cardsPack_id:packId,
+       answer:data.answer,
+       question:data.questions
+     }
+
+    };
+
+    dispatch(cardsThunks.createCard(dataUrlParam))
+      .then(() => {
+
+        dispatch(cardsThunks.getCards({ cardsPack_id: packId }));
+      });
     reset();
     setOpenModal(false);
   };
