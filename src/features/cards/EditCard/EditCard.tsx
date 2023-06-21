@@ -1,19 +1,23 @@
-import React, { FC } from "react";
-import { ModalWindow } from "common/components/ModalWindow/ModalWindow";
-import s from "./styles.module.css";
-import { Button } from "common/components/Button/Button";
-import { FormControl, FormGroup, Input, InputLabel } from "@mui/material";
+import React, { ChangeEvent, FC, useState } from "react";
+import { useAppDispatch } from "common/hooks";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { ArgCreateCardType } from "features/cards/cards.api";
-import { useAppDispatch } from "common/hooks";
+import { ArgUpdateCardType } from "features/cards/cards.api";
 import { cardsThunks } from "features/cards/cards.slice";
-import { useParams } from "react-router-dom";
+import { ModalWindow } from "common/components/ModalWindow/ModalWindow";
+import { FormControl, FormGroup, Input, InputLabel } from "@mui/material";
+import s from "features/cards/AddNewCards/styles.module.css";
+import { Button } from "common/components/Button/Button";
+import * as yup from "yup";
+
 
 type Props = {
   setOpenModal: (openModal: boolean) => void
   openModal: boolean
+  cardQuestion:string
+  cardAnswer:string
+  idCard: string
 
 }
 type NewCardFormType = {
@@ -26,7 +30,17 @@ const schema = yup.object().shape({
 
 });
 
-export const AddNewCards: FC<Props> = ({ setOpenModal, openModal }) => {
+
+
+
+
+export const EditCard:FC<Props> = ({setOpenModal,openModal,cardQuestion,cardAnswer,idCard}) => {
+
+const [questions, setQuestions] = useState<string>(cardQuestion)
+const [answer, setAnswer] = useState<string>(cardAnswer)
+
+
+
   const dispatch = useAppDispatch();
   const { packId } = useParams();
   const handleClose = () => setOpenModal(false);
@@ -43,17 +57,16 @@ export const AddNewCards: FC<Props> = ({ setOpenModal, openModal }) => {
 
 
   const onSubmitHandler = (data: NewCardFormType) => {
-    const dataUrlParam: ArgCreateCardType = {
-
+    const dataUrlParam: ArgUpdateCardType = {
       card: {
-        cardsPack_id: packId,
+        _id: idCard,
         answer: data.answer,
         question: data.questions
       }
 
     };
 
-    dispatch(cardsThunks.createCard(dataUrlParam))
+    dispatch(cardsThunks.updateCard(dataUrlParam))
       .then(() => {
 
         dispatch(cardsThunks.getCards({ cardsPack_id: packId }));
@@ -62,8 +75,22 @@ export const AddNewCards: FC<Props> = ({ setOpenModal, openModal }) => {
     setOpenModal(false);
   };
 
+
+
+
+  const onChangeEditQuestions=(event:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
+
+    setQuestions(event.currentTarget.value);
+
+  }
+
+  const onChangeEditAnswer=(event:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
+
+    setAnswer(event.currentTarget.value);
+
+  }
   return (
-    <ModalWindow open={openModal} setOpen={setOpenModal} titleNameModalWindow={"Add new card"}>
+    <ModalWindow open={openModal} setOpen={setOpenModal} titleNameModalWindow={"Edit card"}>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
 
         <FormGroup sx={{ alignItems: "center", fontSize: "16px", fontWeight: "500" }}>
@@ -73,6 +100,8 @@ export const AddNewCards: FC<Props> = ({ setOpenModal, openModal }) => {
             <Input id="standard-adornment-password" type={"text"}
                    {...register("questions")}
                    placeholder="Questions"
+                   value={questions}
+                   onChange={onChangeEditQuestions}
                    required
             />
             <p style={{ color: "red", fontSize: "12px" }}>{errors.questions?.message}</p>
@@ -84,6 +113,8 @@ export const AddNewCards: FC<Props> = ({ setOpenModal, openModal }) => {
             <Input id="standard-adornment-password" type={"text"}
                    {...register("answer")}
                    placeholder="Answer"
+                   value={answer}
+                   onChange={onChangeEditAnswer}
                    required
             />
             <p style={{ color: "red", fontSize: "12px" }}>{errors.answer?.message}</p>
@@ -100,6 +131,6 @@ export const AddNewCards: FC<Props> = ({ setOpenModal, openModal }) => {
 
 
     </ModalWindow>
-  );
+  )
 };
 

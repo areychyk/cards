@@ -24,7 +24,30 @@ export const CardsApi={
 	createCards:(data:ArgCreateCardType)=>{
 		return instance.post<any>("/cards/card",data)
 	},
+	updateCards:(data:ArgUpdateCardType)=>{
+		return instance.put<any>("/cards/card",data)
+	},
 }
+
+
+//types
+
+export type ArgUpdateCardType = {
+	card:{
+		_id?: string;
+		question?: string;
+		answer?: string;
+		grade?: CardGradeType;
+		shots?: number;
+		answerImg?: string;
+		questionImg?: string;
+		questionVideo?: string;
+		answerVideo?: string;
+	}
+
+};
+
+
 type CardGradeType = 0 | 1 | 2 | 3 | 4 | 5;
 
 export type ArgCreateCardType = {

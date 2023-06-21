@@ -54,7 +54,7 @@ export const TableCards:FC<Props> = ({cards}) => {
                   <TableCell align="center" >
                     <div className={s.blockRatingAndActions}>
                       <GradeRating />
-                      {(profileId === cards.packUserId) && <ActionsTableCards cardId={card._id} />}
+                      {(profileId === cards.packUserId) && <ActionsTableCards idCard={card._id} cardQuestion={card.question} cardAnswer={card.answer} />}
                     </div>
 
 

@@ -31,11 +31,14 @@ export const ActionsTablePacksCards: FC<Props> = ({ idUserCards, idCard, packNam
 
   return (
     <div className={s.actionsCompWrapper}>
+
+
       <SchoolOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} aria-disabled={true} />
 
       {profile && profile._id === idUserCards && <>
         <BorderColorOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickEditPack} />
         <DeleteOutlineOutlinedIcon fontSize={"small"} style={{ cursor: "pointer" }} onClick={onClickDeletePack} />
+
         {openModal && <DeletePack
           setOpenModal={setOpenModal}
           openModal={openModal}
