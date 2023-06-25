@@ -53,7 +53,7 @@ export const TableCards:FC<Props> = ({cards}) => {
                   <TableCell align="center">{date.toLocaleDateString()}</TableCell>
                   <TableCell align="center" >
                     <div className={s.blockRatingAndActions}>
-                      <GradeRating />
+                      <GradeRating cardGrade={card.grade} />
                       {(profileId === cards.packUserId) && <ActionsTableCards idCard={card._id} cardQuestion={card.question} cardAnswer={card.answer} />}
                     </div>
 

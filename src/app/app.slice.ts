@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError, isAxiosError } from "axios";
 import { authThunks } from "features/auth/auth.slice";
+import { cardsThunks } from "features/cards/cards.slice";
 
 
 const appInitialState = {
@@ -32,6 +33,17 @@ const slice = createSlice({
       .addCase(authThunks.initializeApp.rejected, (state) => {
         state.isAppInitialized = true
       })
+
+      .addCase(cardsThunks.getCards.fulfilled, (state) => {
+        state.isAppInitialized = true
+      })
+      .addCase(cardsThunks.getCards.rejected, (state) => {
+        state.isAppInitialized = true
+      })
+      .addCase(cardsThunks.getCards.pending, (state) => {
+        state.isAppInitialized = true
+      })
+
       .addMatcher((action) => {
         return action.type.endsWith("/pending");
       }, (state, action) => {

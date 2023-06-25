@@ -1,0 +1,55 @@
+
+.BlockWithTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.title {
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+}
+
+
+.questionAndAnswer{
+    font-family: 'Montserrat',sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.text{
+    font-family: 'Montserrat',sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+    opacity: 0.5;
+    margin: 0;
+    padding: 13px 0 29px;
+}
+.fatFont{
+    font-weight: bold;
+}
+
+.blockGradeCard {
+
+    padding: 40px 0 24px;
+    display: flex;
+    flex-direction: column;
+
+
+}

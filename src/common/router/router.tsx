@@ -10,50 +10,9 @@ import { SetNewPassword } from "features/auth/SetNewPassword/SetNewPassword";
 import { CheckEmail } from "features/auth/CheckEmail/CheckEmail";
 import React from "react";
 import { Cards } from "features/cards/Cards";
+import { LearnCards } from "features/cards/LearnCards/LearnCards";
 
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement:<div>Error!!!!!!!!!</div>,
-//
-//     children:[
-//
-//       {
-//         path: "/register",
-//         element: <Register/>,
-//       },
-//       {
-//         path: "/login",
-//         element: <Login/>,
-//       },
-//       {
-//         path: "/forgot_password",
-//         element: <ForgotPassword/>,
-//       },
-//       {
-//         path: "/set_new_password/:token",
-//         element: <SetNewPassword/>,
-//       },
-//       {
-//         path: "/check_email",
-//         element: <CheckEmail/>,
-//       },
-//       {
-//         path: "/packsList",
-//         element: <PacksList/>,
-//       },
-//       {
-//         path: "/profile",
-//         element: <Profile/>,
-//       },
-//     ]
-//
-//   },
-//
-//
-// ]);
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +35,10 @@ export const router = createBrowserRouter([
           {
             path: "cards/:packId",
             element: <Cards />
+          },
+          {
+            path:"learnCards/:packId",
+            element:<LearnCards/>
           },
         ]
       },

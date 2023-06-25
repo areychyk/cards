@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Outlet, useNavigate } from "react-router-dom";
-import { CircularProgress, Container, LinearProgress, Stack } from "@mui/material";
+import { Container, LinearProgress } from "@mui/material";
 import { useActions } from "common/hooks";
 import { authThunks } from "features/auth/auth.slice";
 import { useSelector } from "react-redux";
@@ -14,8 +14,6 @@ import { useSelector } from "react-redux";
 import { ProfileInitialized } from "features/profile/ProfileInitialized/ProfileInitialized";
 import { selectIsAppInitialized, selectIsLoading } from "common/selectors/app.selectors";
 import { selectIsLoggedIn } from "common/selectors/auth.selectors";
-import { selectProfileId } from "common/selectors/auth.selectors/auth.selector";
-import { selectPacksList } from "common/selectors/packList.selectors";
 import { selectPage } from "common/selectors/packList.selectors/packList.selector";
 import { Preloader } from "common/components/Preloader/Preloader";
 
@@ -25,7 +23,6 @@ export default function App() {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectIsLoading);
-  const page = useSelector(selectPage);
   const isAppInitialized = useSelector(selectIsAppInitialized);
   const { initializeApp } = useActions(authThunks);
 

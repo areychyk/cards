@@ -24,7 +24,23 @@ export const PacksListApi={
 		return instance.delete("/cards/pack", { params:{
 			id:data.id
 			}})
+	},
+
+	editPack:(data:ArgEditPackType)=>{
+		return instance.put("/cards/pack",data)
+	},
+}
+
+
+
+export type ArgEditPackType={
+	cardsPack:{
+		_id:string,
+		name?:string,
+		private?:boolean
 	}
+
+
 }
 
 

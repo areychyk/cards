@@ -22,13 +22,13 @@ export const CompWrapperForContent:FC<Props> = ({title, children,showCloseModel=
             <CloseIcon fontSize={"large"} onClick={onClick}/>
           </div>
           }
-        <Typography
-          marginBottom={'20px'}
-          component="h1"
-          sx={{ fontSize: '26px', fontWeight: '600' }}
-        >
-          {title}
-        </Typography>
+          {title&&<Typography
+            marginBottom={"20px"}
+            component="h1"
+            sx={{ fontSize: "26px", fontWeight: "600" }}
+          >
+            {title}
+          </Typography>}
         {children}
           </FormControl>
       </Paper>
