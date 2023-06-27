@@ -47,9 +47,7 @@ export const NumberOfCards = () => {
     return <div>Pack list nulls</div>
   }
 
-  console.log(packsList.maxCardsCount);
-  console.log(minValue);
-  console.log(maxValue);
+
 
   return (<div>
       <div>

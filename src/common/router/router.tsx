@@ -11,6 +11,7 @@ import { CheckEmail } from "features/auth/CheckEmail/CheckEmail";
 import React from "react";
 import { Cards } from "features/cards/Cards";
 import { LearnCards } from "features/cards/LearnCards/LearnCards";
+import { PageNotFound } from "common/components/PageNotFound/PageNotFound";
 
 
 
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <div>Error!!!!!!!!!</div>,
+    errorElement: <PageNotFound/>,
     children: [
       {
         path: "/",

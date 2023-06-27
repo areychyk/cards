@@ -1,0 +1,38 @@
+
+.wrapperNorFound{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.wrapperTextAndButton{
+    padding-right: 50px ;
+}
+
+.title{
+    padding: 0;
+    margin: 0;
+    color: #000;
+    text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 50px;
+    font-family: Montserrat,sans-serif;
+    font-weight: 600;
+}
+
+
+.text{
+    padding: 11px 0 36px;
+    margin: 0;
+    color: #000;
+    text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-family: Montserrat,sans-serif;
+    font-weight: 500;
+    line-height: 36px;
+}
+
+.avatar{
+    width: 100%;
+}

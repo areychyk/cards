@@ -7,7 +7,7 @@ export const Profile = () => {
   const navigate = useNavigate();
 
   const navigateToPacksList = () => {
-    navigate("/packsList");
+    navigate("packsList");
   };
   return (
     <div>

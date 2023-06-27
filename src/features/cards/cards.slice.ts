@@ -67,8 +67,7 @@ const slice = createSlice({
       .addCase(gradeCard.fulfilled, (state, action) => {
           const updatedGrade = action.payload.updatedGrade
           if ( state.cards) {
-             const currentCards = state.cards.cards
-             const updatedCards = currentCards.map((card) => {
+             const updatedCards = state.cards.cards.map((card) => {
                if (card._id === updatedGrade.card_id) {
                  return {...card, grade: updatedGrade.grade, shots: updatedGrade.shots}
                }else {
