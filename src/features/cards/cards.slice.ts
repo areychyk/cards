@@ -7,7 +7,7 @@ import {
   ArgGradeCardType,
   ArgUpdateCardType,
   CardsApi,
-  ResponseType
+  ResponseType, ResponseTypeUpdatedGrade
 } from "features/cards/cards.api";
 import { clearCards } from "common/actions";
 
@@ -38,9 +38,10 @@ const updateCard = createAppAsyncThunk<void, ArgUpdateCardType>("cards/createCar
   });
 });
 
-const gradeCard = createAppAsyncThunk<void, ArgGradeCardType>("cards/gradeCard", async (arg, thunkAPI) => {
+const gradeCard = createAppAsyncThunk<ResponseTypeUpdatedGrade, ArgGradeCardType>("cards/gradeCard", async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    await CardsApi.gradeCards(arg);
+    const res =  await CardsApi.gradeCards(arg);
+    return res.data
   });
 });
 
@@ -63,6 +64,24 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(gradeCard.fulfilled, (state, action) => {
+          const updatedGrade = action.payload.updatedGrade
+          if ( state.cards) {
+             const currentCards = state.cards.cards
+             const updatedCards = currentCards.map((card) => {
+               if (card._id === updatedGrade.card_id) {
+                 return {...card, grade: updatedGrade.grade, shots: updatedGrade.shots}
+               }else {
+                 return  card
+               }
+             })
+
+              state.cards.cards = updatedCards
+              return state
+
+          }
+
+      })
       .addCase(getCards.fulfilled, (state, action) => {
         state.cards = action.payload.cards;
         state.searchParams.page = action.payload.cards.page;
